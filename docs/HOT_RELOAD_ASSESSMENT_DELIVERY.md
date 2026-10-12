@@ -50,7 +50,7 @@
 
 运行时配置文件：
 
-- `AyeezBlog-Backend/blog-server/src/main/resources/runtime-config.yml`
+- `B1gchangBlog-Backend/blog-server/src/main/resources/runtime-config.yml`
 - Docker 部署推荐外置挂载文件：`deploy/prod/runtime-config.yml`
 - 容器内路径：`/app/config/runtime-config.yml`
 
@@ -219,7 +219,7 @@ Conclusion: backend container keeps running without restart during config update
 
 | File | Purpose | Notes |
 | --- | --- | --- |
-| `AyeezBlog-Backend/blog-server/src/main/resources/runtime-config.yml` | Local hot-reload config | Used for local development verification |
+| `B1gchangBlog-Backend/blog-server/src/main/resources/runtime-config.yml` | Local hot-reload config | Used for local development verification |
 | `deploy/prod/runtime-config.yml` | Production hot-reload config | Host-side file mounted into container |
 | `deploy/prod/.env` | Production env vars | Includes DB secrets and `RUNTIME_CONFIG_PATH` |
 | `deploy/prod/docker-compose.yml` | Production orchestration | Declares config mount and backend env injection |

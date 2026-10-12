@@ -1,0 +1,1412 @@
+<template>
+  <!-- 加载动画 -->
+  <LoadingSpinner v-if="isLoading" @animation-finished="onAnimationFinished" />
+
+
+
+  <div class="home">
+    <!-- 赛博流光背景：左到右横向流动，右侧更密集 -->
+    <div class="cyber-flow-overlay" aria-hidden="true">
+      <svg class="cyber-flow-svg" viewBox="0 0 1000 560" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="flowGradientSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(142,255,132,0)" />
+            <stop offset="32%" stop-color="rgba(142,255,132,0.7)" />
+            <stop offset="68%" stop-color="rgba(142,255,132,0.7)" />
+            <stop offset="100%" stop-color="rgba(142,255,132,0)" />
+          </linearGradient>
+          <linearGradient id="flowGradientStrong" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(96,255,120,0)" />
+            <stop offset="28%" stop-color="rgba(96,255,120,0.86)" />
+            <stop offset="72%" stop-color="rgba(96,255,120,0.86)" />
+            <stop offset="100%" stop-color="rgba(96,255,120,0)" />
+          </linearGradient>
+        </defs>
+
+        <g class="flow-soft-group">
+          <rect x="-280" y="92" width="240" height="1.7" fill="url(#flowGradientSoft)">
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="1360 0" dur="12.8s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.82;1" dur="12.8s" repeatCount="indefinite" />
+          </rect>
+          <rect x="-360" y="206" width="260" height="1.7" fill="url(#flowGradientSoft)">
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="1400 0" dur="11.6s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.82;1" dur="11.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="-420" y="352" width="290" height="1.7" fill="url(#flowGradientSoft)">
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="1420 0" dur="12.1s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.82;1" dur="12.1s" repeatCount="indefinite" />
+          </rect>
+        </g>
+
+        <g class="flow-strong-group">
+          <rect x="580" y="72" width="260" height="1.9" fill="url(#flowGradientStrong)">
+            <animateTransform attributeName="transform" type="translate" from="-240 0" to="260 0" dur="6.4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.84;1" dur="6.4s" repeatCount="indefinite" />
+          </rect>
+          <rect x="700" y="172" width="250" height="2.1" fill="url(#flowGradientStrong)">
+            <animateTransform attributeName="transform" type="translate" from="-260 0" to="240 0" dur="5.3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.84;1" dur="5.3s" repeatCount="indefinite" />
+          </rect>
+          <rect x="760" y="298" width="220" height="2.1" fill="url(#flowGradientStrong)">
+            <animateTransform attributeName="transform" type="translate" from="-250 0" to="220 0" dur="4.8s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.84;1" dur="4.8s" repeatCount="indefinite" />
+          </rect>
+          <rect x="740" y="414" width="230" height="2.1" fill="url(#flowGradientStrong)">
+            <animateTransform attributeName="transform" type="translate" from="-260 0" to="240 0" dur="4.7s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.84;1" dur="4.7s" repeatCount="indefinite" />
+          </rect>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 左上角搓的拐角线 -->
+    <div class="left-top-line"></div>
+    <div class="left-top-line2"></div>
+    <div class="left-top-line3"></div>
+    <div class="left-top-line4"></div>
+    <div class="left-top-line5"></div>
+
+
+
+
+    <!-- 左侧标语 -->
+    <div class="welcome-banner">
+      <div class="line1" ref="line1"></div>
+      <div class="line2" ref="line2"></div>
+
+    </div>
+
+    <div class="content">
+      <p class="fade-in-text">这里是Big畅的博客。</p>
+      <p class="fade-in-text">很高兴与你相遇！</p>
+      <p class="fade-in-text">健身、打瓦、打GO</p>
+      <div class="left-bottom-line6"></div>
+    </div>
+
+    <div class="blank" style="height: 60px;"></div>
+
+
+
+
+  </div>
+  <!-- 引导线和箭头容器 -->
+  <div class="arrow-container">
+    <!-- 引导线 -->
+    <div class="guide-line"></div>
+    <!-- 向下箭头 -->
+    <div class="arrow-down"></div>
+  </div>
+
+  <!-- 新增的横向卡片 -->
+  <div class="card-container">
+    <div class="card row-reveal-item" :class="{ 'row-revealed': isHomeRowRevealed('notice-row') }" data-row-key="notice-row">
+      <img id="home-card-avatar" src="/avatar.svg" alt="头像">
+      <div class="card-content">
+        <text style="font-size: 20px;font-weight: 1000;padding: 20px 5px;">公告！</text>
+        <text>欢迎来到 B1gchangBlog，记录技术学习与日常生活。</text>
+        <!-- 圆形图标链接 -->
+        <div class="social-icons">
+          <a href="https://github.com/hust-changge" target="_blank" class="icon github">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:18872617747@163.com" class="icon email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章卡片展示区域 -->
+    <div class="posts-container">
+      <div
+        v-for="(post, index) in posts"
+        :key="post.id"
+        class="post-card row-reveal-item"
+        :data-post-id="post.id"
+        :data-row-key="getPostRowKey(index)"
+        role="link"
+        tabindex="0"
+        :aria-label="`打开文章：${post.title}`"
+        :class="[
+          {
+            'scan-active': isActive(post.id) || hoveredCardId === post.id,
+            'active-post': isActive(post.id),
+            'row-revealed': isHomeRowRevealed(getPostRowKey(index))
+          }
+        ]"
+        @mouseenter="hoveredCardId = post.id"
+        @mouseleave="hoveredCardId = null"
+        @click="goToPost(post.id)"
+        @keydown.enter.prevent="goToPost(post.id)"
+        @keydown.space.prevent="goToPost(post.id)">
+        <div class="post-cover-wrap">
+          <img :src="post.cover || post.fallbackCover || defaultCover" :alt="post.title" class="post-cover" />
+          <div v-if="post.cardBadges && post.cardBadges.length" class="post-badges">
+            <span
+              v-for="b in post.cardBadges"
+              :key="b.key"
+              class="post-badge"
+              :class="b.className"
+            >{{ b.label }}</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <h3 class="post-title" style="margin: 0;">{{ post.title }}</h3>
+          <p class="post-description">{{ truncateContent(post.description) }}</p>
+          <p class="post-date">更新于 {{ formatDate(post.updateTime) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分页控件 -->
+    <div class="pagination">
+      <button @click="prevPage" :disabled="currentPage === 1">上一页</button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage === totalPages">下一页</button>
+    </div>
+
+  </div>
+
+
+</template>
+
+<script>
+import { fetchPosts, fetchAlbums, fetchAlbumById } from '@/api'; // 引入 API 方法
+import LoadingSpinner from '@/components/LoadingSpinner.vue'; // 引入加载动画组件
+import { getPostCardBadges } from '@/utils/postCardBadges';
+
+export default {
+  name: 'Home',
+  components: {
+    LoadingSpinner // 注册加载动画组件
+  },
+  data() {
+    return {
+      // 文章数据
+      posts: [],
+      currentPage: 1,
+      pageSize: 12,
+      effectivePageSize: 12,
+      total: 0,
+      defaultCover: 'https://qiniu.ayeez.cn/bg.jpg',
+      defaultCoverPool: [],
+      defaultCoverPoolPromise: null,
+
+      // 悬停卡片 ID
+      hoveredCardId: null,
+
+      // 手机端滚动时处于视口中间区域的文章卡片 ID 列表
+      activePostIds: [],
+
+      // 已经触发滚动显现动画的行 key
+      revealedRowKeys: [],
+
+      // 卡片滚动观察器
+      cardObserver: null,
+      resizeTimer: null,
+
+      // 加载状态
+      isLoading: true
+    };
+  },
+  computed: {
+    // 计算总页数
+    totalPages() {
+      const size = Number(this.effectivePageSize) > 0 ? Number(this.effectivePageSize) : 1;
+      return Math.max(1, Math.ceil(this.total / size));
+    }
+  },
+  async mounted() {
+    try {
+      // 等待所有资源加载完成
+      await Promise.all([
+        this.preloadFonts(), // 预加载字体
+        this.preloadImages(), // 预加载图片
+        this.loadPosts() // 加载文章数据//在犹豫要不要放下面
+      ]);
+    } finally {
+      this.isLoading = false; // 隐藏加载动画
+      this.animateText(); // 触发文本动画
+      // 绑定滚动事件，用于手机端文章卡片自动高亮
+      window.addEventListener('scroll', this.updateActivePosts, { passive: true });
+      window.addEventListener('resize', this.handleHomeResize, { passive: true });
+      this.setupHomeRowReveal();
+      // 首页完成后：空闲时间预取其它页面 chunk（减少后续跳转首次卡顿）
+      this.warmupRouteChunks();
+    }
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.updateActivePosts);
+    window.removeEventListener('resize', this.handleHomeResize);
+    if (this.cardObserver) {
+      this.cardObserver.disconnect();
+      this.cardObserver = null;
+    }
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = null;
+    }
+  },
+  methods: {
+    // 跳转到文章详情页
+    goToPost(postId) {
+      this.$router.push({ name: 'PostDetail', params: { id: postId } });
+    },
+    // 加载文章数据
+    async loadPosts() {
+      try {
+        await this.ensureDefaultCoverPool();
+        const response = await fetchPosts(this.currentPage, this.pageSize);
+        const payload = response?.data || response || {};
+        const rows = payload.rows || [];
+        this.posts = rows.map((p, index) => ({
+          ...p,
+          cardBadges: getPostCardBadges(p),
+          fallbackCover: this.pickDefaultCoverForPost(p, index)
+        }));
+        this.total = Number(payload.total) || 0; // 总条数
+
+        // 后端可能在 strictMode 下覆盖分页大小，前端分页条必须按“实际生效值”计算。
+        const serverPageSize = Number(payload.pageSize);
+        if (serverPageSize > 0) {
+          this.effectivePageSize = serverPageSize;
+        } else if (Array.isArray(rows) && rows.length > 0) {
+          // 后端未返回 pageSize 时，使用本次实际返回行数作为兜底。
+          // 你的场景里 strictMode 会强制分页大小，这里可确保分页条立即与后端结果一致。
+          this.effectivePageSize = rows.length;
+        } else {
+          // 未返回且 rows 为空时回退到前端请求值，保持兼容。
+          this.effectivePageSize = Number(this.pageSize) > 0 ? Number(this.pageSize) : 1;
+        }
+        // 等文章渲染完后，初始化一次滚动高亮状态（主要用于手机端）
+        this.$nextTick(() => {
+          this.updateActivePosts();
+          // 翻页后重新触发行显现
+          this.revealedRowKeys = [];
+          this.setupHomeRowReveal();
+        });
+      } catch (error) {
+        console.error('加载文章失败:', error);
+      }
+    },
+    async ensureDefaultCoverPool() {
+      if (this.defaultCoverPool.length) return;
+      if (!this.defaultCoverPoolPromise) {
+        this.defaultCoverPoolPromise = this.loadDefaultCoverPool();
+      }
+      await this.defaultCoverPoolPromise;
+    },
+    async loadDefaultCoverPool() {
+      try {
+        const albumsResp = await fetchAlbums();
+        const albums = albumsResp && Array.isArray(albumsResp.data) ? albumsResp.data : [];
+        if (!albums.length) return;
+
+        const targetAlbum = albums.find((album) => Number(album.defaultCoverSource) === 1);
+        if (!targetAlbum) return;
+
+        const detailResp = await fetchAlbumById(targetAlbum.id);
+        const photos = detailResp && detailResp.data && Array.isArray(detailResp.data.photos)
+          ? detailResp.data.photos
+          : [];
+        const photoUrls = photos
+          .map((item) => item && item.imageUrl)
+          .filter((url) => typeof url === 'string' && url);
+
+        const coverImages = Array.isArray(targetAlbum.coverImages) ? targetAlbum.coverImages : [];
+        const merged = [...photoUrls, ...coverImages]
+          .filter((url) => typeof url === 'string' && url);
+        this.defaultCoverPool = Array.from(new Set(merged));
+      } catch (error) {
+        console.error('加载默认封面相册失败:', error);
+        this.defaultCoverPool = [];
+      }
+    },
+    pickDefaultCoverForPost(post, index) {
+      if (!Array.isArray(this.defaultCoverPool) || !this.defaultCoverPool.length) {
+        return this.defaultCover;
+      }
+      // 使用文章 id 和列表下标生成稳定随机，避免重复渲染时频繁换图
+      const seedText = `${post && post.id ? post.id : ''}-${index}`;
+      let hash = 0;
+      for (let i = 0; i < seedText.length; i++) {
+        hash = (hash * 31 + seedText.charCodeAt(i)) >>> 0;
+      }
+      const randomIndex = hash % this.defaultCoverPool.length;
+      return this.defaultCoverPool[randomIndex] || this.defaultCover;
+    },
+
+    // 上一页
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.loadPosts();
+      }
+    },
+
+    // 下一页
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.loadPosts();
+      }
+    },
+
+    // 格式化日期
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('zh-CN');
+    },
+
+    // 截取描述内容
+    truncateContent(description) {
+      if (!description) return '暂无描述';
+      return description.length > 100 ? description.substring(0, 100) + '...' : description;
+    },
+
+    // 判断当前是否为手机端
+    isMobileView() {
+      return window.innerWidth <= 768;
+    },
+
+    // 手机端：根据滚动位置，高亮接近屏幕中线的两篇文章
+    updateActivePosts() {
+      if (!this.isMobileView()) {
+        this.activePostIds = [];
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // 没有真正往下滑动到文章区域之前，不高亮任何文章
+      // 这里用滚动距离做一个简单阈值判断：超过 0.7 个视口高度再开始计算
+      if (scrollY < viewportHeight * 0.7) {
+        this.activePostIds = [];
+        return;
+      }
+
+      const cards = document.querySelectorAll('.posts-container .post-card');
+      if (!cards.length) {
+        this.activePostIds = [];
+        return;
+      }
+
+      const viewportCenterY = window.innerHeight / 2;
+      const distances = [];
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenterY = rect.top + rect.height / 2;
+        const distance = Math.abs(cardCenterY - viewportCenterY);
+        const idAttr = card.getAttribute('data-post-id');
+        if (idAttr) {
+          distances.push({ id: idAttr, distance });
+        }
+      });
+
+      // 按距离从小到大排序，取最接近中线的两篇
+      distances.sort((a, b) => a.distance - b.distance);
+      const nearestIds = distances.map(item => item.id);
+
+      // 第二篇文章的出现阈值比第一篇更高：
+      // - 超过 0.7 * 视口高度：只激活一篇（最接近中线的）
+      // - 超过 1.0 * 视口高度：再激活第二篇
+      let active = [];
+      if (nearestIds.length > 0) {
+        active.push(nearestIds[0]);
+      }
+      if (scrollY >= viewportHeight * 1.0 && nearestIds.length > 1) {
+        active.push(nearestIds[1]);
+      }
+
+      this.activePostIds = active;
+    },
+
+    // 是否为当前滚动激活的文章
+    isActive(postId) {
+      return this.activePostIds.includes(String(postId));
+    },
+
+    handleHomeResize() {
+      if (this.resizeTimer) clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(() => {
+        this.revealedRowKeys = [];
+        this.setupHomeRowReveal();
+      }, 140);
+    },
+
+    getPostColumns() {
+      return window.innerWidth <= 768 ? 1 : 3;
+    },
+
+    getPostRowKey(index) {
+      const columns = this.getPostColumns();
+      return `post-row-${Math.floor(index / columns)}`;
+    },
+
+    isHomeRowRevealed(rowKey) {
+      return this.revealedRowKeys.includes(rowKey);
+    },
+
+    setupHomeRowReveal() {
+      if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+      if (this.cardObserver) this.cardObserver.disconnect();
+
+      this.cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const rowKey = entry.target.getAttribute('data-row-key');
+          if (rowKey && !this.revealedRowKeys.includes(rowKey)) {
+            this.revealedRowKeys.push(rowKey);
+          }
+          this.cardObserver.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -8% 0px'
+      });
+
+      const noticeCard = document.querySelector('.card-container .card.row-reveal-item');
+      if (noticeCard) this.cardObserver.observe(noticeCard);
+
+      const postCards = document.querySelectorAll('.posts-container .post-card.row-reveal-item');
+      const columns = this.getPostColumns();
+      for (let i = 0; i < postCards.length; i += columns) {
+        this.cardObserver.observe(postCards[i]);
+      }
+    },
+
+    warmupRouteChunks() {
+      // 省流模式/慢网：不预取，避免浪费流量影响首屏体验
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const saveData = !!conn?.saveData;
+      const effectiveType = conn?.effectiveType;
+      const isSlow = effectiveType === '2g' || effectiveType === 'slow-2g';
+      if (saveData || isSlow) return;
+
+      const prefetch = () => {
+        // 触发下载并缓存路由 chunk（由 router/index.js 的动态 import 生成）
+        import('@/views/About.vue');
+        import('@/views/Archive.vue');
+        import('@/views/Links.vue');
+        import('@/views/FriendsCircle.vue');
+        import('@/views/Comments.vue');
+        import('@/views/Logs.vue');
+        import('@/views/Albums.vue');
+        import('@/views/AlbumDetail.vue');
+        import('@/views/PostDetail.vue');
+      };
+
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(prefetch, { timeout: 2500 });
+      } else {
+        setTimeout(prefetch, 900);
+      }
+    },
+
+    // 触发文本动画
+    animateText() {
+      const isMobile = window.innerWidth <= 768;
+
+      // 电脑端保持原来的两行样式，手机端拆成三行：WELCOME / TO / B1gchangBlog！
+      const line1Text = isMobile ? 'WELCOME' : 'WELCOME\u00A0TO';
+      const line2Text = isMobile ? '' : 'B1gchang！';
+
+      if (!this.$refs.line1 || !this.$refs.line2) {
+        console.error('DOM elements not found');
+        return;
+      }
+
+      const line1HTML = this.wrapCharacters(line1Text);
+      this.$refs.line1.innerHTML = line1HTML;
+
+      if (isMobile) {
+        // 手机端：三行依次出现
+        // 第一行 WELCOME：逐字浮现（已有 triggerAnimation 处理）
+        // 第二行 TO：逐字浮现，并整体延后一点出现
+        const toHTML = 'TO'
+          .split('')
+          .map((char, index) => `<span class="char mobile-to-char" style="animation-delay: ${0.5 + index * 0.1}s">${char}</span>`)
+          .join('');
+        // 第三、第四行：AYEEZ / BLOG（两行，带绿色渐变）
+        this.$refs.line2.innerHTML =
+          `<div class="mobile-line-to">${toHTML}</div>` +
+          `<div class="mobile-line-ayeez">B1gchang\nBLOG</div>`;
+
+        // 第一行按原逻辑逐字浮现
+        this.triggerAnimation(this.$refs.line1);
+      } else {
+        this.$refs.line2.textContent = line2Text;
+        this.triggerAnimation(this.$refs.line1);
+        this.triggerAnimation(this.$refs.line2);
+      }
+    },
+
+    // 将文本拆分为字符并包装
+    wrapCharacters(text) {
+      return text
+        .split('')
+        .map(char => `<span class="char">${char}</span>`)
+        .join('');
+    },
+
+    // 触发逐字动画
+    triggerAnimation(container) {
+      const chars = container.querySelectorAll('.char');
+      chars.forEach((char, index) => {
+        char.style.animationDelay = `${index * 0.1}s`;
+      });
+    },
+
+    // 预加载字体（失败/超时也必须结束，否则会一直卡在首页 Loading）
+    preloadFonts() {
+      return new Promise((resolve) => {
+        let settled = false;
+        const done = (msg) => {
+          if (settled) return;
+          settled = true;
+          console.log(msg);
+          resolve();
+        };
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap';
+        link.onload = () => done('字体样式表已加载');
+        link.onerror = () => done('字体样式表跳过(将使用本地 @font-face)');
+        setTimeout(() => done('字体预加载超时'), 8000);
+        document.head.appendChild(link);
+      });
+    },
+
+    // 预加载图片（404/跨域/超时都要 resolve，否则会永久卡住 isLoading）
+    preloadImages() {
+      const images = [
+        '/avatar.svg',
+        'https://qiniu.ayeez.cn/bg.jpg'
+      ];
+      return Promise.all(
+        images.map((src) => {
+          return new Promise((resolve) => {
+            let settled = false;
+            const finish = (label) => {
+              if (settled) return;
+              settled = true;
+              console.log(`${label}: ${src}`);
+              resolve();
+            };
+            const img = new Image();
+            const t = setTimeout(() => finish('图片预加载超时'), 12000);
+            img.onload = () => {
+              clearTimeout(t);
+              finish('图片加载完成');
+            };
+            img.onerror = () => {
+              clearTimeout(t);
+              finish('图片预加载跳过(失败)');
+            };
+            img.src = src;
+          });
+        })
+      );
+    }
+  }
+};
+</script>
+
+
+<style>
+/* 引入 Bebas Neue 字体 */
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); */
+
+/* 声明本地字体 */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('@/assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 优化加载体验 */
+}
+
+.home {
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.cyber-flow-overlay {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.49;
+  /* 限制重绘与合成范围，减轻全页连带失效 */
+  contain: paint;
+  isolation: isolate;
+}
+
+.cyber-flow-svg {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.flow-soft-group {
+  opacity: 0.39;
+}
+
+.flow-strong-group {
+  opacity: 0.56;
+}
+
+/* 左侧标语样式 */
+.welcome-banner {
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  text-align: left;
+  color: #fff;
+  padding: 100px;
+  border-radius: 10px;
+}
+
+.line1,
+.line2 {
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  line-height: 1.1;
+}
+
+.line1 {
+  font-size: 6.5vw;
+}
+
+.line2 {
+  font-size: 8vw;
+}
+
+/* 第一排文字样式（白色，逐字动画） */
+.line1 .char {
+  display: inline-block;
+  opacity: 0;
+  color: white;
+  animation: fadeIn 0.5s forwards;
+}
+
+/* 第二排文字样式（整体渐变 + 弹性滑入） */
+.line2 {
+  background-image: linear-gradient(to right, #abe6a8, #00b828);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: pre-line;
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+  /* 初始位置在右侧 */
+  animation: slideInLeft 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  /* 弹性滑入 */
+}
+
+/* 弹性滑入动画定义 */
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    /* 最终位置 */
+  }
+}
+
+/* 逐字浮现动画 */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 内容区域样式 */
+.content {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: left;
+  color: #b6b6b6;
+  padding: 0 100px;
+  border-radius: 10px;
+}
+
+/* 引导线和箭头的容器 */
+.arrow-container {
+  position: absolute;
+  bottom: 60px;
+  /* 距离底部的距离 */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  /* 引导线与箭头之间的间距：放慢并减弱位移，降低常驻合成开销 */
+  animation: floatAndBlink 3.6s infinite ease-in-out;
+  will-change: transform;
+}
+
+/* 引导线样式 */
+.guide-line {
+  width: 2px;
+  height: 40px;
+  background-color: rgba(31, 147, 15, 0.747);
+  border-radius: 999px;
+  box-shadow: #00b828 0px 0px 5px;
+}
+
+/* 向下箭头样式 */
+.arrow-down {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(55, 255, 28);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+}
+
+/* 浮动和闪烁动画 */
+@keyframes floatAndBlink {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+    opacity: 0.72;
+  }
+}
+
+/* 内容区域文字浮现动画 */
+.fade-in-text {
+  opacity: 0;
+  animation: fadeInContent 1s forwards;
+}
+
+/* 分别设置每段文字的延迟时间 */
+.content p:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.content p:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.content p:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+/* 文字浮现动画定义 */
+@keyframes fadeInContent {
+  to {
+    opacity: 1;
+  }
+}
+
+.left-top-line {
+  position: absolute;
+  top: 80px;
+  left: 70px;
+  width: 130px;
+  height: 10px;
+  background-color: rgb(111, 155, 119);
+}
+
+.left-top-line2 {
+  position: absolute;
+  top: 90px;
+  left: 70px;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(111, 155, 119);
+}
+
+.left-top-line3 {
+  position: absolute;
+  top: 110px;
+  left: 70px;
+  width: 10px;
+  height: 5px;
+  background-color: rgb(111, 155, 119);
+}
+
+.left-top-line4 {
+  position: absolute;
+  top: 80px;
+  left: 210px;
+  width: 20px;
+  height: 10px;
+  background-color: rgb(111, 155, 119);
+}
+
+.left-top-line5 {
+  position: absolute;
+  top: 80px;
+  left: 250px;
+  width: 5px;
+  height: 10px;
+  background-color: rgb(111, 155, 119);
+}
+
+.left-bottom-line6 {
+  position: absolute;
+  left: 70px;
+  width: 350px;
+  height: 7px;
+  background-color: rgb(80, 105, 84);
+}
+
+/* 卡片容器样式 */
+.card-container {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  /* margin-top: 95vh; */
+  /*露出来一点在第一面*/
+}
+
+.card {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  /* 为伪元素定位做准备 */
+  width: 70%;
+  max-width: 1000px;
+  background: linear-gradient(135deg,
+      rgba(130, 183, 128, 0.3),
+      rgba(33, 184, 66, 0.6));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  /* padding: 20px; */
+  /* margin:20px; */
+  text-align: center;
+  color: white;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+#home-card-avatar {
+  width: 170px;
+  height: 170px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  margin: 20px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  text-align: left;
+}
+
+/* =========================
+   桌面端：首页整体下移一点
+   ========================= */
+@media (min-width: 769px) {
+  .home {
+    padding-top: 32px;
+  }
+
+  .left-top-line {
+    top: 122px;
+  }
+
+  .left-top-line2 {
+    top: 132px;
+  }
+
+  .left-top-line3 {
+    top: 152px;
+  }
+
+  .left-top-line4 {
+    top: 122px;
+  }
+
+  .left-top-line5 {
+    top: 122px;
+  }
+
+  .arrow-container {
+    transform: translateX(-50%) translateY(12px);
+  }
+
+  .card-container {
+    margin-top: 40px;
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #919d8bcb;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  background-color: #555;
+}
+
+/* 特定平台的颜色 */
+.github:hover {
+  background-color: #181818;
+}
+
+.bilibili:hover {
+  background-color: #FB7299;
+}
+
+.douyin:hover {
+  background-color: #181818;
+}
+
+.email:hover {
+  background-color: #b2b206;
+}
+
+.qq:hover {
+  background-color: #12b7f5;
+}
+
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 每行三个卡片 */
+  gap: 20px;
+  /* 卡片之间的间距 */
+  padding: 20px 0px;
+  width: 70%;
+  max-width: 1000px;
+  box-sizing: border-box;
+  /* 包含 padding 和 border 在内计算宽度 */
+}
+
+.post-card {
+  background: linear-gradient(135deg,
+      rgba(108, 171, 106, 0.3),
+      rgba(42, 184, 73, 0.6));
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border 0.3s ease;
+  /* 添加边框过渡 */
+  border: 2px solid #ffffff00;
+  position: relative;
+  /* 为伪元素定位做准备 */
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.post-card.row-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card.row-reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.card.row-reveal-item.row-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 鼠标悬停时的样式 */
+.post-card:hover {
+  transform: translateY(-5px);
+  /* 卡片上浮 */
+  border: 2px solid #00b828;
+  /* 绿色边框 */
+  box-shadow: 0 6px 15px rgba(0, 184, 40, 0.4);
+  /* 增强阴影效果 */
+}
+
+/* 键盘/点击聚焦时的样式（可见聚焦框） */
+.post-card:focus-visible {
+  transform: translateY(-5px);
+  border: 2px solid #00b828;
+  box-shadow: 0 6px 15px rgba(0, 184, 40, 0.55);
+}
+
+/* 扫描线动画 */
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  /* 初始位置在卡片上方 */
+  left: 0;
+  width: 100%;
+  height: 5px;
+  /* 扫描线高度 */
+  background: linear-gradient(to bottom, transparent, #00b828, transparent);
+  /* 绿色渐变 */
+  z-index: 10;
+  /* 确保扫描线在内容之上 */
+  transition: none;
+  /* 禁用默认过渡 */
+}
+
+/* 仅在当前悬停卡片上触发动画 */
+.post-card.scan-active::before {
+  animation: scanLine 1s ease-in-out;
+  /* 触发扫描动画 */
+}
+
+/* 扫描线关键帧动画 */
+@keyframes scanLine {
+  0% {
+    top: 0%;
+    /* 起始位置 */
+  }
+
+  100% {
+    top: 100%;
+    /* 结束位置 */
+  }
+}
+
+.post-cover-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.post-badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: calc(100% - 16px);
+  pointer-events: none;
+}
+
+.post-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.post-badge--pinned {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.post-badge--featured {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.post-badge--editing {
+  background: linear-gradient(135deg, #7dd3fc, #38bdf8);
+  color: #0c4a6e;
+  text-shadow: none;
+}
+
+.post-badge--water {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* 未聚焦：封面黑白；悬停或手机端当前卡片为彩色 */
+.post-cover {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.post-card:hover .post-cover {
+  filter: grayscale(0%);
+}
+
+.active-post .post-cover {
+  filter: grayscale(0%);
+}
+
+.post-info {
+  padding: 15px;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 0px;
+  text-align: right;
+  margin-top: 3px;
+}
+
+.post-description {
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+/* 分页控件样式 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  /* transition: background 0.3s ease; */
+}
+
+.pagination button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   移动端适配（手机端样式）
+   ========================= */
+@media (max-width: 768px) {
+  .cyber-flow-overlay {
+    height: 100vh;
+    opacity: 0.42;
+  }
+
+  .home {
+    padding: 16px;
+  }
+
+  /* 顶部欢迎标题区域 */
+  .welcome-banner {
+    padding: 72px 20px 20px;
+    /* 整体往下移动一点，让标题更靠下 */
+    text-align: left;
+  }
+
+  .line1 {
+    font-size: 18vw;
+    font-weight: 550;
+  }
+
+  .line2 {
+    font-size: 26vw;
+    font-weight: 550;
+    /* 覆盖 PC 端的滑入动画，让手机端按行顺序出现 */
+    color: #fff;
+    white-space: normal;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  /* 手机端：TO 行整体样式（和 WELCOME 类似） */
+  .line2 .mobile-line-to {
+    display: block;
+  }
+
+  .line2 .mobile-line-to .mobile-to-char {
+    display: inline-block;
+    opacity: 0;
+    color: #fff;
+    animation: fadeIn 0.5s forwards;
+  }
+
+  /* 第三行 AYEEZ BLOG：整行延后出现 */
+  .line2 .mobile-line-ayeez {
+    opacity: 0;
+    display: block;
+    white-space: pre-line;
+    background-image: linear-gradient(to right, #abe6a8, #00b828);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fadeIn 0.6s forwards;
+    animation-delay: 1.1s;
+  }
+
+  /* 装饰条：仅保留一根竖线在标题左边 */
+  .left-top-line2 {
+    top: 110px;
+    left: 10px;
+    width: 4px;
+    height: 50px;
+  }
+
+  .left-top-line,
+  .left-top-line3,
+  .left-top-line4,
+  .left-top-line5 {
+    display: none;
+  }
+
+  .left-bottom-line6 {
+    display: none;
+  }
+
+  /* 文本内容区域 */
+  .content {
+    padding: 0 16px 16px;
+    font-size: 14px;
+  }
+
+  /* 向下引导箭头稍微抬高 */
+  .arrow-container {
+    bottom: 80px;
+  }
+
+  /* 个人卡片在手机上更小一些 */
+  .card-container {
+    margin-top: 24px;
+  }
+
+  .card {
+    width: 86%;
+    flex-direction: column;
+    /* 头像在上，文字在下，垂直排布 */
+    align-items: center;
+    gap: 8px;
+    padding: 12px 10px 10px;
+  }
+
+  #home-card-avatar {
+    width: 110px;
+    height: 110px;
+    margin: 2px 0 6px 0;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .card-content text {
+    font-size: 14px;
+    display: block;
+    line-height: 1.5;
+    margin-bottom: 2px;
+  }
+
+  .card-content text:first-child {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .social-icons {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* 文章卡片布局改为单列，方便阅读 */
+  .posts-container {
+    width: 92%;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* 手机端文章封面缩小一些 */
+  .post-cover {
+    height: 130px;
+  }
+
+  .post-title {
+    font-size: 16px;
+  }
+
+  .post-description {
+    font-size: 12px;
+  }
+
+  .post-date {
+    font-size: 11px;
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-flow-svg animateTransform {
+    display: none;
+  }
+
+  .arrow-container {
+    animation: none;
+    transform: translateX(-50%);
+  }
+}
+</style>

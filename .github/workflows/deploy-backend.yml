@@ -19,7 +19,7 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        working-directory: ./AyeezBlog-Backend
+        working-directory: ./B1gchangBlog-Backend
         run: |
           mvn clean package -DskipTests
 
@@ -70,7 +70,7 @@ jobs:
 
           
           echo "⬆️  上传新的jar包..."
-          scp AyeezBlog-Backend/blog-server/target/blog-server-0.0.1-SNAPSHOT.jar \
+          scp B1gchangBlog-Backend/blog-server/target/blog-server-0.0.1-SNAPSHOT.jar \
               ${SSH_USER}@${SSH_HOST}:/var/lib/docker/volumes/jar/_data/app.jar
 
           

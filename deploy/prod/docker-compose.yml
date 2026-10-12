@@ -22,7 +22,7 @@ services:
 
   backend:
     build:
-      context: ../../AyeezBlog-Backend
+      context: ../../B1gchangBlog-Backend
       dockerfile: ../deploy/prod/Dockerfile.backend
     image: ayeezblog:latest
     container_name: ayeezblog-backend

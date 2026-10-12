@@ -119,7 +119,7 @@ cd AyeezBlog
 
 #### 2. Initialize database
 - Create database: `ayeezblog` (recommended charset: `utf8mb4`)
-- Run schema script in project root: `AyeezBlog建表.sql`
+- Run schema script in project root: `B1gchangBlog建表.sql`
 
 #### 3. Start backend (`blog-server`)
 
@@ -135,7 +135,7 @@ $env:HM_DB_USER="root"
 $env:HM_DB_PASSWORD="your_db_password"
 ```
 
-- **Option B**: edit `AyeezBlog-Backend/blog-server/src/main/resources/application.yml` and fill `hm.db.host / hm.db.username / hm.db.password`.
+- **Option B**: edit `B1gchangBlog-Backend/blog-server/src/main/resources/application.yml` and fill `hm.db.host / hm.db.username / hm.db.password`.
 
 Notes:
 
@@ -146,24 +146,24 @@ Notes:
 If you run with the `dev` profile (enabling `application-dev.yml`), it is recommended to inject via environment variables: DeepSeek uses `DEEPSEEK_API_KEY` (optional `DEEPSEEK_VERBOSE_LOG`), and Jimeng uses `VOLCENGINE_ACCESS_KEY` / `VOLCENGINE_SECRET_KEY` (optional `VOLCENGINE_VERBOSE_HTTP_LOG`).
 
 ```bash
-cd AyeezBlog-Backend
+cd B1gchangBlog-Backend
 mvn clean install
 cd blog-server
 mvn spring-boot:run
 ```
 Default API: `http://localhost:8080`
 
-#### 4. Start frontend (`AyeezBlog-Frontend`)
+#### 4. Start frontend (`B1gchangBlog-Frontend`)
 ```bash
-cd AyeezBlog-Frontend
+cd B1gchangBlog-Frontend
 npm install
 npm run dev
 ```
 Visit: `http://localhost:5173`
 
-#### 5. Start admin panel (`AyeezBlog-AdminPanel`)
+#### 5. Start admin panel (`B1gchangBlog-AdminPanel`)
 ```bash
-cd AyeezBlog-AdminPanel
+cd B1gchangBlog-AdminPanel
 npm install
 npm run dev
 ```
@@ -222,7 +222,7 @@ Optional third-party integrations:
 Deployment flow on `master` push:
 
 1. Detect changed paths (backend/frontend/adminpanel/deploy).
-2. Upload `AyeezBlog-Backend` and `deploy` to server.
+2. Upload `B1gchangBlog-Backend` and `deploy` to server.
 3. Generate `deploy/prod/.env` on server from GitHub Secrets.
 4. Run compose build/up for required services.
 5. Build frontend/adminpanel and rsync static files into nginx `html` volume.
@@ -268,7 +268,7 @@ Common issues:
 
 This section keeps only the essential keys. For detailed notes, examples, and optional parameters, see the inline comments in:
 
-- `AyeezBlog-Backend/blog-server/src/main/resources/application.yml`
+- `B1gchangBlog-Backend/blog-server/src/main/resources/application.yml`
 
 | Key | Description |
 | --- | --- |

@@ -1,0 +1,60 @@
+name: lcblog2
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    mem_limit: 512m
+    environment:
+      MYSQL_DATABASE: ayeezblog
+      MYSQL_USER: blog_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD}
+      TZ: Asia/Shanghai
+    command: ["--innodb-buffer-pool-size=128M", "--max-connections=50", "--mysqlx=OFF"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../../B1gchangBlog建表.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./02-disable-default-admin.sql:/docker-entrypoint-initdb.d/02-disable-default-admin.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_PASSWORD mysql -h 127.0.0.1 -u blog_user ayeezblog -e 'SELECT 1' >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 60s
+  backend:
+    image: ghcr.io/hust-changge/lcblog2-backend:${IMAGE_TAG:?Set full commit SHA}
+    restart: unless-stopped
+    mem_limit: 640m
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Shanghai
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx384m
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ayeezblog
+      SPRING_DATASOURCE_USERNAME: blog_user
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      HM_DB_HOST: mysql
+      HM_DB_USERNAME: blog_user
+      HM_DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      HM_JWT_SECRET_KEY: ${HM_JWT_SECRET_KEY:?Set HM_JWT_SECRET_KEY}
+      RUNTIME_CONFIG_PATH: /app/config/runtime-config.yml
+    volumes:
+      - ../prod/runtime-config.yml:/app/config/runtime-config.yml:rw
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8080/post/list?page=1&pageSize=1"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+  nginx:
+    image: ghcr.io/hust-changge/lcblog2-nginx:${IMAGE_TAG:?Set full commit SHA}
+    restart: unless-stopped
+    mem_limit: 128m
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${HTTP_BIND:-127.0.0.1}:80:80"
+volumes:
+  mysql_data:

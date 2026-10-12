@@ -16,21 +16,21 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: AyeezBlog-AdminPanel/package-lock.json
+          cache-dependency-path: B1gchangBlog-AdminPanel/package-lock.json
 
       - name: 安装依赖
-        working-directory: ./AyeezBlog-AdminPanel
+        working-directory: ./B1gchangBlog-AdminPanel
         run: npm ci
 
       - name: 构建项目
-        working-directory: ./AyeezBlog-AdminPanel
+        working-directory: ./B1gchangBlog-AdminPanel
         run: npm run build
 
       - name: 部署到服务器（rsync 至 html/_data/admin）
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avz --delete
-          path: AyeezBlog-AdminPanel/dist/
+          path: B1gchangBlog-AdminPanel/dist/
           remote_path: /var/lib/docker/volumes/html/_data/admin/
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{ secrets.SERVER_USER }}

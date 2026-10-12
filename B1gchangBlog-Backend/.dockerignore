@@ -1,0 +1,4 @@
+**/target
+**/.env*
+**/application-local-secret.yml
+**/.jwt-secret

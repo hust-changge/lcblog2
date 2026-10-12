@@ -4,9 +4,9 @@ on:
   push:
     branches: [ master ]
     paths:
-      - "AyeezBlog-Backend/**"
-      - "AyeezBlog-Frontend/**"
-      - "AyeezBlog-AdminPanel/**"
+      - "B1gchangBlog-Backend/**"
+      - "B1gchangBlog-Frontend/**"
+      - "B1gchangBlog-AdminPanel/**"
       - "deploy/**"
       - ".github/workflows/cicd-deploy.yml"
   workflow_dispatch:
@@ -30,11 +30,11 @@ jobs:
         with:
           filters: |
             backend:
-              - "AyeezBlog-Backend/**"
+              - "B1gchangBlog-Backend/**"
             frontend:
-              - "AyeezBlog-Frontend/**"
+              - "B1gchangBlog-Frontend/**"
             adminpanel:
-              - "AyeezBlog-AdminPanel/**"
+              - "B1gchangBlog-AdminPanel/**"
             deploy_other:
               - "deploy/**"
               - "!deploy/prod/runtime-config.yml"
@@ -158,7 +158,7 @@ jobs:
           username: ${{ env.SERVER_USER }}
           port: ${{ env.SERVER_PORT }}
           key: ${{ env.SERVER_SSH_KEY }}
-          source: "AyeezBlog-Backend,deploy"
+          source: "B1gchangBlog-Backend,deploy"
           target: ${{ env.SERVER_BASE_DIR }}
           overwrite: true
           strip_components: 0
@@ -220,21 +220,21 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: AyeezBlog-Frontend/package-lock.json
+          cache-dependency-path: B1gchangBlog-Frontend/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./AyeezBlog-Frontend
+        working-directory: ./B1gchangBlog-Frontend
         run: npm ci
 
       - name: Build frontend
-        working-directory: ./AyeezBlog-Frontend
+        working-directory: ./B1gchangBlog-Frontend
         run: npm run build
 
       - name: Sync to nginx html volume
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avz --delete --exclude=admin/
-          path: AyeezBlog-Frontend/dist/
+          path: B1gchangBlog-Frontend/dist/
           remote_path: /var/lib/docker/volumes/html/_data/
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{ secrets.SERVER_USER }}
@@ -253,21 +253,21 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: AyeezBlog-AdminPanel/package-lock.json
+          cache-dependency-path: B1gchangBlog-AdminPanel/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./AyeezBlog-AdminPanel
+        working-directory: ./B1gchangBlog-AdminPanel
         run: npm ci
 
       - name: Build admin panel
-        working-directory: ./AyeezBlog-AdminPanel
+        working-directory: ./B1gchangBlog-AdminPanel
         run: npm run build
 
       - name: Sync admin to nginx html volume
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avz --delete
-          path: AyeezBlog-AdminPanel/dist/
+          path: B1gchangBlog-AdminPanel/dist/
           remote_path: /var/lib/docker/volumes/html/_data/admin/
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{ secrets.SERVER_USER }}

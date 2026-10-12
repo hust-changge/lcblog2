@@ -16,14 +16,14 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: AyeezBlog-Frontend/package-lock.json
+          cache-dependency-path: B1gchangBlog-Frontend/package-lock.json
 
       - name: 安装依赖
-        working-directory: ./AyeezBlog-Frontend
+        working-directory: ./B1gchangBlog-Frontend
         run: npm ci
 
       - name: 构建项目
-        working-directory: ./AyeezBlog-Frontend
+        working-directory: ./B1gchangBlog-Frontend
         run: npm run build
 
       # 同步到站点根目录；排除 admin/，避免覆盖管理端（管理端由 deploy-adminpanel 部署）
@@ -31,7 +31,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avz --delete --exclude=admin/
-          path: AyeezBlog-Frontend/dist/
+          path: B1gchangBlog-Frontend/dist/
           remote_path: /var/lib/docker/volumes/html/_data/
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{ secrets.SERVER_USER }}

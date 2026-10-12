@@ -8,11 +8,11 @@ services:
       TZ: Asia/Shanghai
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ./AyeezBlog建表.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./B1gchangBlog建表.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
 
   backend:
     build:
-      context: ./AyeezBlog-Backend
+      context: ./B1gchangBlog-Backend
       dockerfile: Dockerfile.perf-local
     image: ayeezblog-backend:perf-local
     container_name: ayeezblog-backend-perf-local
@@ -35,4 +35,4 @@ services:
     mem_limit: 4g
     cpus: 2.0
     volumes:
-      - ./AyeezBlog-Backend/blog-server/src/main/resources/runtime-config.yml:/app/config/runtime-config.yml:rw
+      - ./B1gchangBlog-Backend/blog-server/src/main/resources/runtime-config.yml:/app/config/runtime-config.yml:rw

@@ -137,7 +137,7 @@ docker compose -f deploy/prod/docker-compose.yml --env-file deploy/prod/.env ps
 
 ```bash
 docker exec mysql sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS ayeezblog CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"'
-docker exec -i mysql sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" ayeezblog' < "AyeezBlog建表.sql"
+docker exec -i mysql sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" ayeezblog' < "B1gchangBlog建表.sql"
 ```
 
 上述命令会在容器内读取 `MYSQL_ROOT_PASSWORD`，不依赖宿主机环境变量。

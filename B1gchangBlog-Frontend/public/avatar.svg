@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Big畅的头像">
+  <rect width="160" height="160" rx="40" fill="#101b17"/>
+  <circle cx="80" cy="80" r="62" fill="none" stroke="#7af58f" stroke-width="3"/>
+  <text x="80" y="100" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-weight="700" fill="#7af58f">B1</text>
+</svg>

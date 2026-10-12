@@ -159,7 +159,7 @@ cd AyeezBlog
 
 - 创建数据库：`ayeezblog`（字符集建议 `utf8mb4`）。
 
-- 执行项目根目录建表脚本：`AyeezBlog建表.sql`。
+- 执行项目根目录建表脚本：`B1gchangBlog建表.sql`。
 
   
 
@@ -170,7 +170,7 @@ cd AyeezBlog
 推荐先复制本地示例配置文件（已提供占位符与注释）：
 
 ```powershell
-cd AyeezBlog-Backend/blog-server/src/main/resources
+cd B1gchangBlog-Backend/blog-server/src/main/resources
 Copy-Item application-local.example.yml application-local.yml
 ```
 
@@ -192,7 +192,7 @@ $env:HM_DB_USERNAME="root"
 $env:HM_DB_PASSWORD="你的数据库密码"
 ```
 
-- **方式 B**：直接修改 `AyeezBlog-Backend/blog-server/src/main/resources/application.yml`，把 `hm.db.host / hm.db.username / hm.db.password` 填成你的本地配置。
+- **方式 B**：直接修改 `B1gchangBlog-Backend/blog-server/src/main/resources/application.yml`，把 `hm.db.host / hm.db.username / hm.db.password` 填成你的本地配置。
 - **方式 C（推荐）**：修改你刚复制出来的 `application-local.yml`（推荐，不污染主配置文件，便于版本管理）。
 
 补充说明（避免“到底用哪个配置文件”的混淆）：
@@ -208,7 +208,7 @@ $env:HM_DB_PASSWORD="你的数据库密码"
 **可选 — AI**：若需 DeepSeek 生成描述，请配置 `hm.deepseek.api-key` 与 `hm.deepseek.summary-enabled=true`；若需即梦生成封面，请配置 `hm.volcengine.access-key`、`hm.volcengine.secret-key` 与 `hm.volcengine.cover-enabled=true`，并保证七牛已配置（详见下文「配置说明」）。未配置时其余功能不受影响。
 
 ```bash
-cd AyeezBlog-Backend
+cd B1gchangBlog-Backend
 mvn clean install
 cd blog-server
 mvn spring-boot:run
@@ -220,13 +220,13 @@ mvn spring-boot:run
 
   
 
-#### 4. 启动前台（AyeezBlog-Frontend）
+#### 4. 启动前台（B1gchangBlog-Frontend）
 
 新建控制台，回到项目根目录，执行如下指令：
 
 ```bash
 
-cd AyeezBlog-Frontend
+cd B1gchangBlog-Frontend
 
 npm install
 
@@ -242,13 +242,13 @@ npm run dev
 
   
 
-#### 5. 启动管理端（AyeezBlog-AdminPanel）
+#### 5. 启动管理端（B1gchangBlog-AdminPanel）
 
 新建控制台，回到项目根目录，执行如下指令：
 
 ```bash
 
-cd AyeezBlog-AdminPanel
+cd B1gchangBlog-AdminPanel
 
 npm install
 
@@ -276,7 +276,7 @@ npm run dev
 
 ### 后端配置 (application.yml)
 
-配置说明仅保留关键项；更完整的填写示例、可选项与环境变量映射已写入 `AyeezBlog-Backend/blog-server/src/main/resources/application.yml` 的注释中（建议直接打开该文件照注释填）。
+配置说明仅保留关键项；更完整的填写示例、可选项与环境变量映射已写入 `B1gchangBlog-Backend/blog-server/src/main/resources/application.yml` 的注释中（建议直接打开该文件照注释填）。
 
 默认读取规则：
 
@@ -298,7 +298,7 @@ npm run dev
 
 | 文件 | 场景 | 作用 |
 | --- | --- | --- |
-| `AyeezBlog-Backend/blog-server/src/main/resources/runtime-config.yml` | 本地开发 | 本地运行时热重载配置文件（IDE / `mvn spring-boot:run` 常用） |
+| `B1gchangBlog-Backend/blog-server/src/main/resources/runtime-config.yml` | 本地开发 | 本地运行时热重载配置文件（IDE / `mvn spring-boot:run` 常用） |
 | `deploy/prod/runtime-config.yml` | Docker 线上 | 线上外置热重载配置文件，挂载到容器 `/app/config/runtime-config.yml` |
 | `deploy/prod/.env` | Docker 线上 | Compose 运行时环境变量（数据库、密钥、`RUNTIME_CONFIG_PATH` 等） |
 | `deploy/prod/docker-compose.yml` | Docker 线上 | 定义容器编排、runtime-config 文件挂载、后端环境变量注入 |

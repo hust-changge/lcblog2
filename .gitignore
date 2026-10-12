@@ -11,7 +11,11 @@ performance/jmeter/**/*.csv
 **/tmp-test-data/
 
 # Local secrets (never commit)
-AyeezBlog-Backend/blog-server/.env.local
-AyeezBlog-Backend/blog-server/src/main/resources/application-local-secret.yml
+B1gchangBlog-Backend/blog-server/.env.local
+B1gchangBlog-Backend/blog-server/src/main/resources/application-local-secret.yml
 **/.jwt-secret
 deploy/prod/.env
+
+# Local development database and logs
+.local/
+deploy/registry/.env
