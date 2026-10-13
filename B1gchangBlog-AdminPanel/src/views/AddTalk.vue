@@ -24,9 +24,9 @@
         <el-upload
           class="img-upload"
           :show-file-list="false"
-          accept="image/*"
+          accept="image/png,image/jpeg,image/gif,image/webp"
           multiple
-          :http-request="uploadToQiniu"
+          :http-request="uploadToOss"
           :disabled="uploading"
         >
           <el-button type="primary" plain :loading="uploading">
@@ -65,8 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { addTalk, getTalkDetail, updateTalk, getQiniuUploadToken } from '@/api'
+import { addTalk, getTalkDetail, updateTalk, uploadOssImage } from '@/api'
 
 export default {
   name: 'AddTalk',
@@ -228,7 +227,7 @@ export default {
       this.images = arr
       this.syncImagesToForm()
     },
-    async uploadToQiniu(options) {
+    async uploadToOss(options) {
       const { file, onProgress, onSuccess, onError } = options || {}
       if (!file) {
         onError && onError(new Error('未选择文件'))
@@ -238,37 +237,18 @@ export default {
       this.uploadProgress = 0
       try {
         const compressedFile = await this.compressImageFile(file)
-        const tokenData = await getQiniuUploadToken({
-          filename: compressedFile.name,
-          dir: 'talks'
-        })
-
-        const { uploadToken, key, domain, uploadUrl } = tokenData || {}
-        if (!uploadToken || !key || !domain || !uploadUrl) {
-          throw new Error('获取七牛上传凭证失败（返回数据不完整）')
-        }
-
-        const formData = new FormData()
-        formData.append('token', uploadToken)
-        formData.append('key', key)
-        formData.append('file', compressedFile)
-
-        await axios.post(uploadUrl, formData, {
-          onUploadProgress: (evt) => {
-            if (!evt || !evt.total) return
-            const percent = Math.min(99, Math.round((evt.loaded / evt.total) * 100))
-            this.uploadProgress = percent
-            onProgress && onProgress({ percent })
-          }
-        })
-
-        const normalizedDomain = String(domain).replace(/\/+$/, '')
-        const url = this.normalizeUrl(`${normalizedDomain}/${key}`)
+        const { url } = await uploadOssImage(compressedFile, 'talks', (evt) => {
+          if (!evt || !evt.total) return;
+          const percent = Math.min(99, Math.round((evt.loaded / evt.total) * 100));
+          this.uploadProgress = percent;
+          onProgress && onProgress({ percent });
+        });
+        if (!url) throw new Error('OSS 未返回图片链接');
         this.images = [...this.images, url]
         this.syncImagesToForm()
 
         this.uploadProgress = 100
-        onSuccess && onSuccess({ url, key })
+        onSuccess && onSuccess({ url })
       } catch (e) {
         console.error('上传失败:', e)
         const serverMsg = e?.response?.data?.error || e?.response?.data?.message || ''

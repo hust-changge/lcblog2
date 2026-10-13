@@ -87,14 +87,14 @@ onUnmounted(() => {
   width: 100%;
   margin-top: 60px;
   padding: 50px 16px 26px;
-  background-color: rgba(0, 0, 0, 0.78);
-  color: #f5f5f5;
+  background-color: rgba(var(--surface-rgb), 0.78);
+  color: var(--text-secondary);
   font-size: 13px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: 1px solid rgba(111, 155, 119, 0.4);
-  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 -4px 14px rgba(var(--surface-rgb), 0.65);
 }
 
 .footer-content {
@@ -116,7 +116,7 @@ onUnmounted(() => {
 }
 
 .site-footer a:hover {
-  color: #6bff7a;
+  color: var(--accent-color);
   text-decoration: underline;
 }
 

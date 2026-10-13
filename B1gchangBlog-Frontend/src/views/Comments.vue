@@ -474,8 +474,8 @@ export default {
 .comments {
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.7);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -496,7 +496,7 @@ export default {
 .comments-tagline {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .comments-title-gradient {
@@ -510,11 +510,11 @@ export default {
 
 .comments-subtitle {
   margin-bottom: 18px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .sub-link {
-  color: #7af58f;
+  color: var(--accent-color);
   text-decoration: none;
 }
 
@@ -523,7 +523,7 @@ export default {
 }
 
 .highlight {
-  color: #7af58f;
+  color: var(--accent-color);
   font-weight: 600;
 }
 
@@ -532,17 +532,17 @@ export default {
   border-radius: 12px;
   padding: 18px 18px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--surface-rgb), 0.8);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
+  box-shadow: 0 6px 18px rgba(var(--surface-rgb), 0.35);
 }
 
 .comment-card--all {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-  background: linear-gradient(135deg, rgba(108, 171, 106, 0.12), rgba(0, 0, 0, 0.82));
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(135deg, rgba(108, 171, 106, 0.12), rgba(var(--surface-rgb), 0.82));
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
 }
 
 .card-header {
@@ -571,9 +571,9 @@ export default {
   height: 32px;
   padding: 0 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
+  background: rgba(var(--contrast-rgb), 0.06);
+  color: var(--text-primary);
   cursor: pointer;
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
@@ -599,9 +599,9 @@ export default {
   height: 32px;
   padding: 0 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
   background: linear-gradient(135deg, rgba(108, 171, 106, 0.22), rgba(42, 184, 73, 0.35));
-  color: #fff;
+  color: var(--text-primary);
   cursor: pointer;
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
@@ -639,25 +639,25 @@ export default {
   border-radius: 999px;
   background: rgba(0, 184, 40, 0.16);
   border: 1px solid rgba(0, 184, 40, 0.45);
-  color: #dfffe5;
+  color: var(--accent-color);
   font-size: 12px;
 }
 
 .meta-muted {
   font-size: 12px;
-  color: #c8c8c8;
+  color: var(--text-secondary);
 }
 
 .meta-error {
   font-size: 12px;
-  color: #ffb4b4;
+  color: var(--error-color);
 }
 
 .empty-state {
   margin-top: 18px;
   padding: 18px 0 4px;
   text-align: center;
-  color: #cfcfcf;
+  color: var(--text-secondary);
 }
 
 .recent-list {
@@ -674,8 +674,8 @@ export default {
   border-radius: 10px;
   text-decoration: none;
   color: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(135deg, rgba(108, 171, 106, 0.10), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(var(--contrast-rgb), 0.18);
+  background: linear-gradient(135deg, rgba(108, 171, 106, 0.10), rgba(var(--contrast-rgb), 0.04));
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -690,7 +690,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(var(--contrast-rgb), 0.25);
   flex: 0 0 auto;
 }
 
@@ -708,7 +708,7 @@ export default {
 
 .recent-nick {
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -717,7 +717,7 @@ export default {
 
 .recent-time {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--text-rgb), 0.75);
   white-space: nowrap;
   flex: 0 0 auto;
 }
@@ -734,13 +734,13 @@ export default {
 .reply-tag {
   margin-left: 8px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
 }
 
 .recent-text {
   margin-top: 6px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--text-rgb), 0.85);
   line-height: 1.4;
   display: -webkit-box;
   line-clamp: 3;
@@ -758,8 +758,8 @@ export default {
 
 .tree-group {
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(135deg, rgba(108, 171, 106, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(var(--contrast-rgb), 0.14);
+  background: linear-gradient(135deg, rgba(108, 171, 106, 0.08), rgba(var(--contrast-rgb), 0.02));
   padding: 12px;
 }
 
@@ -785,13 +785,13 @@ export default {
 
 .group-count {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
   white-space: nowrap;
 }
 
 .group-empty {
   margin-top: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
   font-size: 12px;
 }
 
@@ -814,7 +814,7 @@ export default {
   height: 34px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
   flex: 0 0 auto;
 }
 
@@ -832,7 +832,7 @@ export default {
 
 .node-nick {
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -841,7 +841,7 @@ export default {
 
 .node-time {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--text-rgb), 0.75);
   white-space: nowrap;
 }
 
@@ -865,7 +865,7 @@ export default {
 .node-text {
   margin-top: 6px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--text-rgb), 0.85);
   line-height: 1.4;
   white-space: pre-wrap;
   word-break: break-word;
@@ -878,25 +878,25 @@ export default {
 }
 
 #tcomment {
-  color: white;
+  color: var(--text-primary);
   min-height: 120px;
 }
 
 .twikoo-embed-error {
   margin-top: 10px;
   font-size: 13px;
-  color: #ffb4b4;
+  color: var(--error-color);
   line-height: 1.5;
 }
 
 /* Twikoo：用 :deep 覆盖内部样式，贴合站点黑金/绿色调 */
 .twikoo-wrap :deep(.tk-comments) {
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(var(--text-rgb), 0.88);
 }
 
 .twikoo-wrap :deep(.tk-submit) {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(var(--contrast-rgb), 0.04);
+  border: 1px solid rgba(var(--contrast-rgb), 0.16);
   border-radius: 12px;
   padding: 14px 14px;
 }
@@ -919,9 +919,9 @@ export default {
 .twikoo-wrap :deep(textarea),
 .twikoo-wrap :deep(input),
 .twikoo-wrap :deep(.tk-input) {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.35);
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
   border-radius: 10px;
   outline: none;
 }
@@ -935,16 +935,16 @@ export default {
 
 .twikoo-wrap :deep(.tk-row.actions),
 .twikoo-wrap :deep(.tk-row.actions > *) {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--text-rgb), 0.85);
 }
 
 .twikoo-wrap :deep(.tk-send),
 .twikoo-wrap :deep(button),
 .twikoo-wrap :deep(.tk-button) {
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
   background: linear-gradient(135deg, rgba(108, 171, 106, 0.22), rgba(42, 184, 73, 0.35));
-  color: #fff;
+  color: var(--text-primary);
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -958,22 +958,22 @@ export default {
 
 .twikoo-wrap :deep(.tk-comment) {
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(var(--contrast-rgb), 0.14);
+  background: rgba(var(--contrast-rgb), 0.03);
   padding: 12px 12px;
 }
 
 .twikoo-wrap :deep(.tk-content) {
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(var(--text-rgb), 0.86);
 }
 
 .twikoo-wrap :deep(.tk-nick) {
-  color: #fff;
+  color: var(--text-primary);
   font-weight: 700;
 }
 
 .twikoo-wrap :deep(.tk-time) {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--text-rgb), 0.65);
   font-size: 12px;
 }
 

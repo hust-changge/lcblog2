@@ -630,7 +630,7 @@ export default {
 
 .home {
   padding: 20px;
-  color: white;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
 }
@@ -666,7 +666,7 @@ export default {
 .welcome-banner {
   font-family: 'Bebas Neue', Arial, sans-serif;
   text-align: left;
-  color: #fff;
+  color: var(--text-primary);
   padding: 100px;
   border-radius: 10px;
 }
@@ -691,7 +691,7 @@ export default {
 .line1 .char {
   display: inline-block;
   opacity: 0;
-  color: white;
+  color: var(--text-primary);
   animation: fadeIn 0.5s forwards;
 }
 
@@ -733,7 +733,7 @@ export default {
   font-size: 18px;
   line-height: 1.6;
   text-align: left;
-  color: #b6b6b6;
+  color: var(--text-secondary);
   padding: 0 100px;
   border-radius: 10px;
 }
@@ -887,15 +887,15 @@ export default {
   background: linear-gradient(135deg,
       rgba(130, 183, 128, 0.3),
       rgba(33, 184, 66, 0.6));
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(var(--contrast-rgb), 0.4);
   border-radius: 10px;
   /* padding: 20px; */
   /* margin:20px; */
   text-align: center;
-  color: white;
+  color: var(--text-primary);
   box-shadow:
     inset 0 0 10px rgba(255, 255, 255, 0.2),
-    0 4px 15px rgba(0, 0, 0, 0.3);
+    0 4px 15px rgba(var(--surface-rgb), 0.3);
 }
 
 .card::before {
@@ -915,7 +915,7 @@ export default {
 #home-card-avatar {
   width: 170px;
   height: 170px;
-  border: 3px solid rgba(255, 255, 255, 0.5);
+  border: 3px solid rgba(var(--contrast-rgb), 0.5);
   margin: 20px;
 }
 
@@ -977,7 +977,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   background-color: #919d8bcb;
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -1027,7 +1027,7 @@ export default {
       rgba(42, 184, 73, 0.6));
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(var(--surface-rgb), 0.2);
   transition: transform 0.3s ease, border 0.3s ease;
   /* 添加边框过渡 */
   border: 2px solid #ffffff00;
@@ -1135,9 +1135,9 @@ export default {
   font-size: 11px;
   font-weight: 600;
   line-height: 1.35;
-  color: #fff;
+  color: var(--text-primary);
   letter-spacing: 0.02em;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 4px rgba(var(--surface-rgb), 0.35);
   backdrop-filter: blur(4px);
 }
 
@@ -1185,12 +1185,12 @@ export default {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: white;
+  color: var(--text-primary);
 }
 
 .post-date {
   font-size: 12px;
-  color: #ccc;
+  color: var(--text-secondary);
   margin-bottom: 0px;
   text-align: right;
   margin-top: 3px;
@@ -1214,16 +1214,16 @@ export default {
 
 .pagination button {
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(var(--contrast-rgb), 0.2);
   border: none;
   border-radius: 5px;
-  color: white;
+  color: var(--text-primary);
   cursor: pointer;
   /* transition: background 0.3s ease; */
 }
 
 .pagination button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(var(--contrast-rgb), 0.4);
 }
 
 .pagination button:disabled {
@@ -1260,7 +1260,7 @@ export default {
     font-size: 26vw;
     font-weight: 550;
     /* 覆盖 PC 端的滑入动画，让手机端按行顺序出现 */
-    color: #fff;
+    color: var(--text-primary);
     white-space: normal;
     opacity: 1;
     transform: none;
@@ -1275,7 +1275,7 @@ export default {
   .line2 .mobile-line-to .mobile-to-char {
     display: inline-block;
     opacity: 0;
-    color: #fff;
+    color: var(--text-primary);
     animation: fadeIn 0.5s forwards;
   }
 

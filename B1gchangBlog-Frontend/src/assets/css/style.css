@@ -1,6 +1,6 @@
 :root {
-  --blog-link-color: #8dff98;
-  --blog-link-hover-color: #c8ffb8;
+  --blog-link-color: var(--accent-color);
+  --blog-link-hover-color: var(--accent-hover);
   --blog-link-color-on-light: #179447;
   --blog-link-hover-color-on-light: #0f7a39;
 }
@@ -28,13 +28,14 @@ body {
 }
 
 body {
+  background-color: var(--page-background);
   background-image: url('https://qiniu.ayeez.cn/20260220211049919.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-y: scroll; /* 强制显示垂直滚动条 */
-  color: white;
+  color: var(--text-primary);
   touch-action: pan-y;
 }
 
@@ -47,15 +48,6 @@ a:visited {
 a:hover,
 a:focus-visible {
   color: var(--blog-link-hover-color);
-}
-
-/* 磁力框选光标：隐藏系统原生光标，仅显示自定义光标 */
-@media (pointer: fine) {
-  html,
-  body,
-  body * {
-    cursor: none !important;
-  }
 }
 
 /* 自定义滚动条样式 */
@@ -75,4 +67,105 @@ a:focus-visible {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #646464;
+}
+
+
+:root {
+  color-scheme: dark;
+  --page-background: #0b100d;
+  --surface-rgb: 0, 0, 0;
+  --surface-solid: #111;
+  --contrast-rgb: 255, 255, 255;
+  --text-rgb: 255, 255, 255;
+  --text-primary: #fff;
+  --text-secondary: #ccc;
+  --accent-color: #7af58f;
+  --accent-hover: #c8ffb8;
+  --error-color: #ffb4b4;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --page-background: #edf3ee;
+  --surface-rgb: 255, 255, 255;
+  --surface-solid: #fff;
+  --contrast-rgb: 24, 44, 30;
+  --text-rgb: 24, 44, 30;
+  --text-primary: #182c1e;
+  --text-secondary: #475a4d;
+  --accent-color: #176c37;
+  --accent-hover: #0d5127;
+  --error-color: #b42332;
+}
+
+html[data-theme='light'] body {
+  background-image: none;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 68px;
+  min-height: 44px;
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(var(--text-rgb), 0.3);
+  border-radius: 999px;
+  background: rgba(var(--surface-rgb), 0.8);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+html[data-theme='light'] .blog-header,
+html[data-theme='light'] .side-drawer-panel {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+html[data-theme='light'] :is(.header-nav a, .side-drawer-title, .side-drawer-item,
+  .site-footer, .footer-line, .content, .fade-in-text) {
+  color: var(--text-primary);
+}
+
+html[data-theme='light'] :is(.line2, .mobile-line-ayeez) {
+  background-image: linear-gradient(to right, #176c37, #24733b);
+}
+
+html[data-theme='light'] .post-content table { background-color: #f3f6f3; }
+html[data-theme='light'] .post-content th { background-color: #e4ece5; }
+html[data-theme='light'] .post-content :is(th, td) { border-color: #b8c9bc; }
+html[data-theme='light'] .post-content pre { color: #e6edf3; }
+html[data-theme='light'] :is(.date, .content.current h2) { color: #805800; }
+html[data-theme='light'] .current-badge { color: #286723; }
+html[data-theme='light'] :is(.links-status-error, .load-error, .error-text, .comments-error) { color: var(--error-color); }
+html[data-theme='light'] .about-tag { color: #fff; }
+html[data-theme='light'] .social-icons .icon:hover { color: #fff; }
+
+@media (max-width: 1200px) {
+  .blog-header .header-nav { display: none; }
+  .blog-header .hamburger-btn { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .blog-header { padding-inline: 12px; }
+  .blog-header .header-title h1 { font-size: 20px; white-space: nowrap; }
+  .blog-header .header-right { gap: 8px; }
+  .theme-toggle { min-width: 44px; padding-inline: 10px; }
+  .theme-toggle span { display: none; }
+}
+
+html[data-theme='light'] :is(.hero-title, .section-title, .rules-title, .rules-subtitle-strong,
+  .highlight, .accent-text, .hero-subtitle, .home-title, .links-title-gradient,
+  .comments-title-gradient, .archive-title, .logs-title) {
+  color: var(--accent-color);
+  -webkit-text-fill-color: var(--accent-color);
+  text-shadow: none;
 }

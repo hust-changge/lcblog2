@@ -3,23 +3,13 @@ package cn.ayeez.blogserver.service.ai;
 
 import cn.ayeez.blogserver.config.ArticleCoverImageProperties;
 
-import cn.ayeez.blogserver.config.QiniuProperties;
+import cn.ayeez.blogserver.service.OssImageService;
 
 import cn.ayeez.blogserver.util.VolcengineVisualSigner;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.qiniu.http.Response;
-
-import com.qiniu.storage.Configuration;
-
-import com.qiniu.storage.UploadManager;
-
-import com.qiniu.util.Auth;
-
-import com.qiniu.util.StringMap;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,21 +30,15 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 
-import java.time.LocalDate;
-
-import java.time.format.DateTimeFormatter;
-
 import java.util.LinkedHashMap;
 
 import java.util.Map;
 
 import java.util.TreeMap;
 
-import java.util.UUID;
-
 
 /**
- * 火山引擎即梦（智能视觉 CVProcess）文生图生成封面，并转存七牛得到持久 URL。
+ * 火山引擎即梦（智能视觉 CVProcess）文生图生成封面，并转存阿里云 OSS得到持久 URL。
  */
 
 @Service
@@ -87,7 +71,7 @@ public class ArticleCoverImageService {
 
     private final ArticleCoverImageProperties coverProperties;
 
-    private final QiniuProperties qiniuProperties;
+    private final OssImageService ossImages;
 
     private final RestTemplate restTemplate;
 
@@ -95,7 +79,7 @@ public class ArticleCoverImageService {
 
 
     /**
-     * 生成封面并上传七牛，返回可长期访问的封面 URL；失败抛异常由 Controller 转 Result。
+     * 生成封面并上传阿里云 OSS，返回可长期访问的封面 URL；失败抛异常由 Controller 转 Result。
      */
 
     public String generateAndUploadCover(String title, String description, String coverPrompt) throws Exception {
@@ -124,12 +108,7 @@ public class ArticleCoverImageService {
 
         }
 
-        if (!qiniuConfigured()) {
-
-            throw new IllegalStateException("七牛配置不完整，无法保存封面图");
-
-        }
-
+        ossImages.requireConfigured();
 
         String prompt = buildPrompt(title, description, coverPrompt);
 
@@ -156,24 +135,11 @@ public class ArticleCoverImageService {
         log.debug("ArticleCoverImage: 已下载图片, bytes={}", imageBytes.length);
 
 
-        String publicUrl = uploadToQiniuPng(imageBytes);
+        String publicUrl = ossImages.upload(imageBytes, "covers");
 
-        log.debug("ArticleCoverImage: 七牛上传完成, publicUrlHost={}", hostOnly(publicUrl));
+        log.debug("ArticleCoverImage: 阿里云 OSS上传完成, publicUrlHost={}", hostOnly(publicUrl));
 
         return publicUrl;
-
-    }
-
-
-    private boolean qiniuConfigured() {
-
-        return StringUtils.hasText(qiniuProperties.getAccessKey())
-
-                && StringUtils.hasText(qiniuProperties.getSecretKey())
-
-                && StringUtils.hasText(qiniuProperties.getBucket())
-
-                && StringUtils.hasText(qiniuProperties.getDomain());
 
     }
 
@@ -623,63 +589,4 @@ public class ArticleCoverImageService {
     }
 
 
-    private String uploadToQiniuPng(byte[] data) throws Exception {
-
-        String datePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-
-        String key = "covers/" + datePath + "/ai-" + uuid + ".png";
-
-
-        Auth auth = Auth.create(qiniuProperties.getAccessKey(), qiniuProperties.getSecretKey());
-
-        long expires = qiniuProperties.getTokenExpires() != null ? qiniuProperties.getTokenExpires() : 3600;
-
-        String token = auth.uploadToken(qiniuProperties.getBucket(), key, expires, new StringMap());
-
-
-        log.debug("ArticleCoverImage: 上传七牛, key={}, dataBytes={}", key, data.length);
-
-        UploadManager uploadManager = new UploadManager(new Configuration());
-
-        Response qnResp = uploadManager.put(data, key, token);
-
-        if (!qnResp.isOK()) {
-
-            log.debug("ArticleCoverImage: 七牛失败 statusCode={}, body={}", qnResp.statusCode, qnResp.bodyString());
-
-            throw new IllegalStateException("七牛上传失败: " + qnResp.bodyString());
-
-        }
-
-
-        String domain = normalizeDomain(qiniuProperties.getDomain());
-
-        return domain + "/" + key;
-
-    }
-
-
-    private String normalizeDomain(String domain) {
-
-        String d = domain.trim();
-
-        while (d.endsWith("/")) {
-
-            d = d.substring(0, d.length() - 1);
-
-        }
-
-        if (d.startsWith("http://") || d.startsWith("https://")) {
-
-            return d;
-
-        }
-
-        return "https://" + d;
-
-    }
-
 }
-

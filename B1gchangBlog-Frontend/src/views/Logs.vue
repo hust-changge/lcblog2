@@ -301,9 +301,9 @@ export default {
 .logs {
   width: 100%;
   padding: 20px;
-  color: white;
+  color: var(--text-primary);
   font-family: 'Arial', sans-serif;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(var(--surface-rgb), 0.7);
   /* 半透明黑色背景 */
   box-sizing: border-box;
 }
@@ -317,7 +317,7 @@ export default {
   text-align: center;
   margin-bottom: 30px;
   font-size: 2em;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 /* 时间线容器 */
@@ -367,10 +367,10 @@ export default {
 
 .content {
   flex: 3;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--contrast-rgb), 0.1);
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(var(--surface-rgb), 0.2);
   transition: transform 0.3s ease;
 }
 
@@ -406,15 +406,15 @@ export default {
 }
 
 .date.future-inactive-date {
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .content.future-inactive li {
-  color: #a3a3a3;
+  color: var(--text-secondary);
 }
 
 .content.future-inactive li::before {
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .content:hover {
@@ -424,7 +424,7 @@ export default {
 
 .content h2 {
   margin-top: 0;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 1.5em;
 }
 

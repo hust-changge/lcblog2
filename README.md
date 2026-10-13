@@ -26,7 +26,8 @@ Big畅的个人博客，记录技术学习与日常生活：**健身、打瓦、
 - 说说、相册、关于页、追番列表和更新日志。
 - 管理端登录及文章、分类、标签、友链、相册、说说等内容维护。
 - 个人资料已替换为 Big畅 / B1gchangBlog；移除原作者旧站入口、社交账号与备案号。
-- 使用本地 B1 默认头像；鼠标仅保留绿色小圆点跟随，取消外层方框与磁吸框选。
+- 使用本地 B1 默认头像；保留系统原生鼠标，使用 [tholman/cursor-effects](https://github.com/tholman/cursor-effects) 的 Fairy Dust 彩色星光拖尾，不显示绿色圆点或外层方框。触屏及启用减少动画的环境不初始化特效。
+- 导航栏提供深色／浅色切换，默认深色，并在本机保存选择；手机端显示太阳／月亮按钮。
 - 评论暂未开放，已断开原作者 Twikoo 服务；七牛上传和 AI 功能尚未配置。
 - 背景及默认文章封面仍使用原项目图片地址。
 - 已提供 GitHub Actions 构建和 GHCR 镜像部署配置，不自动 SSH 部署服务器。
@@ -312,6 +313,7 @@ dc logs --tail=80 mysql backend nginx
 ```bash
 node tests/cursor.cjs
 node tests/personalization.cjs
+node tests/theme.cjs
 node deploy/registry/check.cjs
 npm --prefix B1gchangBlog-Frontend run build
 npm --prefix B1gchangBlog-AdminPanel run build
@@ -327,3 +329,9 @@ Twikoo 需部署自己的评论服务，并在前后台构建环境设置 `VITE_
 `docs/` 中的历史文档及旧工作流保留了上游上下文，部署时以本 README 和 `deploy/registry/` 为准。
 
 本项目基于 [Apache License 2.0](LICENSE) 开源。感谢 [阿叶 Ayeez / Ayeez757](https://github.com/Ayeez757) 提供原项目，原作者署名、许可证和 Git 贡献历史予以保留。
+
+
+## 阿里云 OSS 图片上传
+
+管理端支持上传文章封面、正文图片和说说图片，AI 封面也转存到 OSS。正文上传后自动插入 Markdown 链接。单张上限 10MB，支持 PNG/JPG/GIF/WebP。
+完整的 Bucket、RAM 权限、图片域名和服务器 `.env` 配置见 [OSS 配置教程](deploy/OSS.md)。未配置 OSS 时仍可发布纯文字文章。

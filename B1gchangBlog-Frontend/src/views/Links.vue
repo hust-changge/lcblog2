@@ -234,8 +234,8 @@ export default {
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.7);
   display: flex;
   justify-content: center;
 }
@@ -253,7 +253,7 @@ export default {
 .links-tagline {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .links-title-gradient {
@@ -267,12 +267,12 @@ export default {
 
 .links-subtitle {
   margin-bottom: 24px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .links-status {
   margin: 0 0 20px;
-  color: #d8d8d8;
+  color: var(--text-secondary);
 }
 
 .links-status-error {
@@ -300,7 +300,7 @@ export default {
   border: 2px solid #ffffff00;
   box-shadow:
     inset 0 0 10px rgba(255, 255, 255, 0.15),
-    0 4px 15px rgba(0, 0, 0, 0.35);
+    0 4px 15px rgba(var(--surface-rgb), 0.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   overflow: hidden;
@@ -350,7 +350,7 @@ export default {
   height: 54px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(var(--contrast-rgb), 0.6);
 }
 
 .link-meta {
@@ -358,7 +358,7 @@ export default {
 }
 
 .link-name {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.1rem;
   margin: 0 0 4px 0;
 }
@@ -366,7 +366,7 @@ export default {
 .link-descr {
   margin: 0;
   font-size: 0.9rem;
-  color: #cccccc;
+  color: var(--text-secondary);
   white-space: normal;
   text-overflow: clip;
   overflow: visible;
@@ -376,9 +376,9 @@ export default {
   margin-top: 24px;
   margin-bottom: 24px;
   padding: 16px 18px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(var(--surface-rgb), 0.8);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(var(--contrast-rgb), 0.4);
   font-size: 0.95rem;
 }
 
@@ -386,18 +386,18 @@ export default {
   margin-top: 0;
   margin-bottom: 6px;
   font-size: 1.2rem;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .rules-subtitle {
   margin: 4px 0;
-  color: #dddddd;
+  color: var(--text-secondary);
 }
 
 .rules-subtitle-strong {
   margin: 10px 0 4px;
   font-size: 1.05rem;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .links-rules ul {
@@ -410,7 +410,7 @@ export default {
 }
 
 .highlight {
-  color: #7af58f;
+  color: var(--accent-color);
   font-weight: 600;
 }
 
@@ -425,28 +425,28 @@ export default {
 }
 
 .links-code {
-  background-color: #111;
+  background-color: var(--surface-solid);
   border-radius: 6px;
   padding: 10px 12px;
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   white-space: pre;
   overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(var(--contrast-rgb), 0.3);
   margin-bottom: 12px;
 }
 
 .links-tip {
   margin-top: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .comment-card {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(var(--surface-rgb), 0.8);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 10px rgba(var(--surface-rgb), 0.3);
+  border: 1px solid rgba(var(--contrast-rgb), 0.5);
   margin-top: 24px;
 }
 
@@ -456,6 +456,6 @@ export default {
 }
 
 #tlinkcomment {
-  color: white;
+  color: var(--text-primary);
 }
 </style>

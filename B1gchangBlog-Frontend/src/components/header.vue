@@ -36,6 +36,16 @@
 
             <!-- 汉堡按钮（小屏显示） -->
             <button
+                class="theme-toggle"
+                type="button"
+                :aria-label="theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'"
+                :aria-pressed="theme === 'light'"
+                @click="toggleTheme"
+            >
+                <i :class="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'" aria-hidden="true"></i>
+                <span>{{ theme === 'dark' ? '浅色' : '深色' }}</span>
+            </button>
+            <button
                 class="hamburger-btn"
                 :class="{ 'is-open': isMenuOpen }"
                 @click="toggleMenu"
@@ -81,10 +91,13 @@
 </template>
 
 <script>
+import { setTheme } from '@/utils/theme';
+
 export default {
     data() {
         return {
-            isMenuOpen: false
+            isMenuOpen: false,
+            theme: document.documentElement.dataset.theme || 'dark'
         };
     },
     computed: {
@@ -124,6 +137,9 @@ export default {
         window.removeEventListener("resize", this.handleResize);
     },
     methods: {
+        toggleTheme() {
+            this.theme = setTheme(this.theme === 'dark' ? 'light' : 'dark');
+        },
         animateTitle() {
             const titleElement = this.$refs.title;
             if (!titleElement) return;
@@ -246,9 +262,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 5px 40px;
-    background-color: rgba(0, 0, 0, 0.788);
+    background-color: rgba(var(--surface-rgb), 0.788);
     /* 半透明黑色背景 */
-    color: rgba(235, 235, 235, 0.866);
+    color: var(--text-secondary);
     position: fixed;
     top: 0;
     left: 0;
@@ -280,7 +296,7 @@ export default {
 }
 
 .header-title h1:hover {
-    color: #6bff7a;
+    color: var(--accent-color);
     /* 悬停时变色 */
 }
 
@@ -306,13 +322,13 @@ export default {
 
 .header-nav a {
     text-decoration: none;
-    color: rgb(218, 218, 218);
+    color: var(--text-secondary);
     font-size: 18px;
     transition: color 0.3s ease;
 }
 
 .header-nav a:hover {
-    color: #6bff7a;
+    color: var(--accent-color);
     /* 悬停时变色 */
 }
 
@@ -322,7 +338,7 @@ export default {
     display: inline-block;
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text-primary);
     /* 默认白色 */
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -396,7 +412,7 @@ export default {
 
 /* 鼠标悬停时链接样式 */
 .header-nav a:hover {
-    color: #6bff7a;
+    color: var(--accent-color);
     /* 悬停时文字变色 */
 }
 
@@ -453,7 +469,7 @@ export default {
 .side-drawer {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(var(--surface-rgb), 0.6);
     backdrop-filter: blur(4px);
     z-index: 1200;
     display: flex;
@@ -464,8 +480,8 @@ export default {
     width: 70%;
     max-width: 320px;
     height: 100%;
-    background: radial-gradient(circle at top left, rgba(11, 184, 47, 0.25), rgba(0, 0, 0, 0.92));
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.8);
+    background: radial-gradient(circle at top left, rgba(11, 184, 47, 0.25), rgba(var(--surface-rgb), 0.92));
+    box-shadow: -4px 0 20px rgba(var(--surface-rgb), 0.8);
     border-left: 1px solid rgba(37, 252, 145, 0.3);
     display: flex;
     flex-direction: column;
@@ -487,7 +503,7 @@ export default {
 
 .side-drawer-title {
     font-size: 18px;
-    color: #e9ffe9;
+    color: var(--text-secondary);
     letter-spacing: 0.08em;
 }
 
@@ -503,7 +519,7 @@ export default {
 .side-drawer-item {
     position: relative;
     padding: 10px 4px;
-    color: #f1fff1;
+    color: var(--text-secondary);
     font-size: 16px;
     display: flex;
     flex-direction: column;
@@ -527,7 +543,7 @@ export default {
 }
 
 .side-drawer-item:hover {
-    color: #6bff7a;
+    color: var(--accent-color);
 }
 
 .side-drawer-item:hover .side-drawer-bar {

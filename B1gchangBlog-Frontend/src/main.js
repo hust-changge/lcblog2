@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { initSmoothScroll } from './plugins/smoothScroll'
+import { initTheme } from './utils/theme'
 import 'lenis/dist/lenis.css'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -10,6 +11,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 // import './assets/main.css'
 import './assets/css/style.css'
 
+initTheme()
 const app = createApp(App)
 
 app.use(router)

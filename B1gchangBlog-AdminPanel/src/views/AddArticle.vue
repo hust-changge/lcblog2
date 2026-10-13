@@ -67,12 +67,12 @@
               <el-upload
                 class="cover-upload"
                 :show-file-list="false"
-                accept="image/*"
-                :http-request="uploadCoverToQiniu"
+                accept="image/png,image/jpeg,image/gif,image/webp"
+                :http-request="uploadArticleImage"
                 :disabled="coverUploading"
               >
                 <el-button :loading="coverUploading" type="primary" plain>
-                  {{ coverUploading ? '正在上传封面…' : '选择图片并上传到七牛' }}
+                  {{ coverUploading ? '正在上传封面…' : '选择图片并上传到阿里云 OSS' }}
                 </el-button>
               </el-upload>
               <el-progress
@@ -180,7 +180,14 @@
         <div class="editor-pane editor-pane--source">
           <div class="editor-pane__head">
             <span class="editor-pane__label">Markdown 源码</span>
-            <span class="editor-pane__hint">支持 Front-Matter</span>
+            <el-upload
+              :show-file-list="false"
+              accept="image/png,image/jpeg,image/gif,image/webp"
+              :http-request="(options) => uploadArticleImage(options, 'content')"
+              :disabled="coverUploading"
+            >
+              <el-button size="small" :loading="coverUploading">上传正文图片</el-button>
+            </el-upload>
           </div>
           <div class="editor-pane__body">
             <el-input
@@ -215,7 +222,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import MarkdownIt from 'markdown-it';
 import markdownItTexmath from 'markdown-it-texmath';
 import katex from 'katex';
@@ -223,7 +229,7 @@ import DOMPurify from 'dompurify';
 import fm from 'front-matter';
 import yaml from 'js-yaml';
 import 'katex/dist/katex.min.css';
-import { addPost, getPostDetail, updatePost, getQiniuUploadToken, generateArticleDescription, generateArticleCover } from '../api/index';
+import { addPost, getPostDetail, updatePost, uploadOssImage, generateArticleDescription, generateArticleCover } from '../api/index';
 
 export default {
   data() {
@@ -329,7 +335,7 @@ export default {
       const hints = [
         '已向即梦提交文生图请求，出图较慢请稍候（通常需数十秒）…',
         '即梦正在绘制封面，请继续等待…',
-        '已拿到图片，正在下载并上传到七牛…'
+        '已拿到图片，正在下载并上传到阿里云 OSS…'
       ];
       let step = 0;
       this.aiCoverHint = hints[0];
@@ -374,7 +380,7 @@ export default {
         }
         this.form.cover = this.normalizeCoverUrl(url);
         this.coverPreviewError = false;
-        this.$message.success('封面已生成并上传到七牛');
+        this.$message.success('封面已生成并上传到阿里云 OSS');
       } catch (error) {
         const msg = this.pickAxiosErrorMessage(error, '生成封面失败');
         this.$message.error(msg);
@@ -437,7 +443,7 @@ export default {
       if (/^\/\//.test(raw)) return `https:${raw}`;
       return `https://${raw}`;
     },
-    async uploadCoverToQiniu(options) {
+    async uploadArticleImage(options, target = 'cover') {
       const { file, onProgress, onSuccess, onError } = options || {};
       if (!file) {
         onError && onError(new Error('未选择文件'));
@@ -446,36 +452,22 @@ export default {
       this.coverUploading = true;
       this.coverUploadProgress = 0;
       try {
-        const tokenData = await getQiniuUploadToken({
-          filename: file.name,
-          dir: 'covers'
+        const { url } = await uploadOssImage(file, target === 'content' ? 'images' : 'covers', (evt) => {
+          if (!evt || !evt.total) return;
+          const percent = Math.min(99, Math.round((evt.loaded / evt.total) * 100));
+          this.coverUploadProgress = percent;
+          onProgress && onProgress({ percent });
         });
-
-        const { uploadToken, key, domain, uploadUrl } = tokenData || {};
-        if (!uploadToken || !key || !domain || !uploadUrl) {
-          throw new Error('获取七牛上传凭证失败（返回数据不完整）');
+        if (!url) throw new Error('OSS 未返回图片链接');
+        if (target === 'content') {
+          this.markdownContent += `\n\n![图片](${url})\n`;
+          this.parseFrontMatter();
+        } else {
+          this.form.cover = url;
         }
-
-        const formData = new FormData();
-        formData.append('token', uploadToken);
-        formData.append('key', key);
-        formData.append('file', file);
-
-        await axios.post(uploadUrl, formData, {
-          onUploadProgress: (evt) => {
-            if (!evt || !evt.total) return;
-            const percent = Math.min(99, Math.round((evt.loaded / evt.total) * 100));
-            this.coverUploadProgress = percent;
-            onProgress && onProgress({ percent });
-          }
-        });
-
-        const normalizedDomain = String(domain).replace(/\/+$/, '');
-        const url = this.normalizeCoverUrl(`${normalizedDomain}/${key}`);
-        this.form.cover = url;
         this.coverUploadProgress = 100;
-        this.$message.success('封面上传成功，已自动填入链接');
-        onSuccess && onSuccess({ url, key });
+        this.$message.success(target === 'content' ? '正文图片已上传并插入 Markdown' : '封面上传成功，已自动填入链接');
+        onSuccess && onSuccess({ url });
       } catch (e) {
         console.error('封面上传失败:', e);
         const serverMsg = e?.response?.data?.error || e?.response?.data?.message || '';

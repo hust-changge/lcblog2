@@ -80,8 +80,8 @@ export default {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #000;
-  color: #00ff00;
+  background: var(--surface-solid);
+  color: var(--accent-color);
   font-family: 'Courier New', monospace;
   display: flex;
   flex-direction: column;
@@ -119,7 +119,7 @@ export default {
   flex-grow: 1;
   text-align: center;
   font-size: 14px;
-  color: #ccc;
+  color: var(--text-secondary);
 }
 
 .terminal-body {
@@ -141,7 +141,7 @@ export default {
 }
 
 .prompt {
-  color: #00ff00;
+  color: var(--accent-color);
 }
 
 .cursor {

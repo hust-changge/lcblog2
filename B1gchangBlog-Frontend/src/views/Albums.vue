@@ -79,7 +79,7 @@ export default {
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  color: white;
+  color: var(--text-primary);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -98,7 +98,7 @@ export default {
 .albums-tagline {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .albums-title {
@@ -112,7 +112,7 @@ export default {
 
 .albums-subtitle {
   margin: 6px 0 24px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .albums-grid {
@@ -197,12 +197,12 @@ export default {
 .album-desc {
   font-size: 13px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(var(--text-rgb), 0.8);
   margin: 8px 0 0;
 }
 
 .empty-tip {
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-top: 12px;
 }
 

@@ -58,7 +58,7 @@ public class AdminAiController {
     }
 
     /**
-     * 火山引擎即梦（智能视觉）文生图生成封面并转存七牛，返回持久封面 URL。
+     * 火山引擎即梦（智能视觉）文生图生成封面并转存阿里云 OSS，返回持久封面 URL。
      */
     @PostMapping("/article-cover")
     public Result<Map<String, String>> generateArticleCover(@RequestBody ArticleCoverRequest body) {

@@ -337,8 +337,8 @@ export default {
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.7);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -357,7 +357,7 @@ export default {
 .archive-tagline {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .archive-title-gradient {
@@ -371,7 +371,7 @@ export default {
 
 .archive-subtitle {
   margin-bottom: 18px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .archive-toolbar {
@@ -381,9 +381,9 @@ export default {
   flex-wrap: wrap;
   padding: 14px 14px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--surface-rgb), 0.8);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
+  box-shadow: 0 4px 14px rgba(var(--surface-rgb), 0.35);
 }
 
 .toolbar-left,
@@ -402,7 +402,7 @@ export default {
 
 .toolbar-label {
   font-size: 12px;
-  color: #d0d0d0;
+  color: var(--text-secondary);
   letter-spacing: 0.04em;
 }
 
@@ -410,9 +410,9 @@ export default {
 .toolbar-select {
   height: 34px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
+  background: rgba(var(--contrast-rgb), 0.08);
+  color: var(--text-primary);
   padding: 0 10px;
   outline: none;
 }
@@ -447,7 +447,7 @@ export default {
 }
 
 .toolbar-input::placeholder {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(var(--text-rgb), 0.55);
 }
 
 .toolbar-select:disabled {
@@ -457,17 +457,17 @@ export default {
 
 /* 选项列表（不同浏览器支持度不一，但尽量统一） */
 .toolbar-select option {
-  background-color: #111;
-  color: #fff;
+  background-color: var(--surface-solid);
+  color: var(--text-primary);
 }
 
 .toolbar-btn {
   height: 34px;
   padding: 0 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
+  background: rgba(var(--contrast-rgb), 0.08);
+  color: var(--text-primary);
   cursor: pointer;
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
@@ -503,18 +503,18 @@ export default {
   border-radius: 999px;
   background: rgba(0, 184, 40, 0.16);
   border: 1px solid rgba(0, 184, 40, 0.45);
-  color: #dfffe5;
+  color: var(--accent-color);
   font-size: 12px;
 }
 
 .summary-muted {
   font-size: 12px;
-  color: #c8c8c8;
+  color: var(--text-secondary);
 }
 
 .summary-error {
   font-size: 12px;
-  color: #ffb4b4;
+  color: var(--error-color);
 }
 
 .timeline {
@@ -540,9 +540,9 @@ export default {
   height: 28px;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #ffffff;
+  background: rgba(var(--surface-rgb), 0.8);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
+  color: var(--text-primary);
   font-size: 12px;
   letter-spacing: 0.05em;
 }
@@ -559,7 +559,7 @@ export default {
   top: 6px;
   bottom: 8px;
   width: 2px;
-  background: linear-gradient(to bottom, rgba(0, 184, 40, 0.9), rgba(255, 255, 255, 0.15));
+  background: linear-gradient(to bottom, rgba(0, 184, 40, 0.9), rgba(var(--contrast-rgb), 0.15));
   border-radius: 999px;
   box-shadow: 0 0 10px rgba(0, 184, 40, 0.25);
 }
@@ -591,8 +591,8 @@ export default {
   padding: 14px 14px;
   border-radius: 10px;
   background: linear-gradient(135deg, rgba(108, 171, 106, 0.28), rgba(42, 184, 73, 0.55));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.12), 0 6px 16px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(var(--contrast-rgb), 0.2);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.12), 0 6px 16px rgba(var(--surface-rgb), 0.35);
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
   position: relative;
   padding-bottom: 34px;
@@ -609,14 +609,14 @@ export default {
   right: 14px;
   bottom: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--text-rgb), 0.75);
   white-space: nowrap;
 }
 
 .timeline-title {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -626,14 +626,14 @@ export default {
 .timeline-desc {
   margin-top: 8px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--text-rgb), 0.82);
   line-height: 1.4;
 }
 
 .empty-state {
   padding: 40px 0;
   text-align: center;
-  color: #cfcfcf;
+  color: var(--text-secondary);
 }
 
 .archive-footer {
@@ -642,7 +642,7 @@ export default {
 }
 
 .archive-footer__link {
-  color: #7af58f;
+  color: var(--accent-color);
   text-decoration: none;
 }
 

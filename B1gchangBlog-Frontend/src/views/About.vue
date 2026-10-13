@@ -515,10 +515,10 @@ export default {
   min-height: calc(100vh - 68px);
   padding: 20px;
   box-sizing: border-box;
-  color: #fff;
+  color: var(--text-primary);
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(var(--surface-rgb), 0.7);
 }
 
 .about-inner {
@@ -529,9 +529,9 @@ export default {
 .hero {
   padding: 22px 18px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(135deg, rgba(108, 171, 106, 0.12), rgba(0, 0, 0, 0.76));
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(var(--contrast-rgb), 0.18);
+  background: linear-gradient(135deg, rgba(108, 171, 106, 0.12), rgba(var(--surface-rgb), 0.76));
+  box-shadow: 0 10px 30px rgba(var(--surface-rgb), 0.25);
 }
 
 .hero-top {
@@ -545,7 +545,7 @@ export default {
   height: 110px;
   border-radius: 18px;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.55);
+  border: 2px solid rgba(var(--contrast-rgb), 0.55);
   box-shadow: 0 0 0 6px rgba(0, 184, 40, 0.12);
 }
 
@@ -570,7 +570,7 @@ export default {
   margin: 10px 0 0;
   font-size: 16px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(var(--text-rgb), 0.9);
 }
 
 .title-char,
@@ -621,19 +621,19 @@ export default {
   padding: 7px 12px;
   border-radius: 999px;
   font-size: 13px;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border: 1px solid rgba(var(--contrast-rgb), 0.2);
   box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 2px rgba(var(--surface-rgb), 0.25);
 }
 
 .section-card {
   margin-top: 18px;
   padding: 20px 18px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(0, 0, 0, 0.68);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(var(--contrast-rgb), 0.18);
+  background: rgba(var(--surface-rgb), 0.68);
+  box-shadow: 0 10px 26px rgba(var(--surface-rgb), 0.2);
 }
 
 .section-title {
@@ -649,7 +649,7 @@ export default {
 
 .muted {
   margin: 0 0 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(var(--text-rgb), 0.72);
 }
 
 .stats-card {
@@ -677,7 +677,7 @@ export default {
 .muted--stats {
   margin-bottom: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
 }
 
 .stats-images.stats-images--stats {
@@ -717,7 +717,7 @@ export default {
 
 .info-list li {
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(var(--text-rgb), 0.92);
   padding-left: 14px;
   position: relative;
 }
@@ -753,10 +753,10 @@ export default {
   gap: 10px;
   padding: 14px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.16);
+  background: rgba(var(--contrast-rgb), 0.04);
+  box-shadow: 0 10px 22px rgba(var(--surface-rgb), 0.18);
+  color: var(--text-primary);
   transition: transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease, background 0.15s ease;
 }
 
@@ -788,12 +788,12 @@ export default {
   /* width: 100%; */
   margin: 0 auto;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(var(--contrast-rgb), 0.14);
+  background: rgba(var(--contrast-rgb), 0.03);
 }
 
 .tech-marquee {
-  --tech-marquee-bg: rgba(0, 0, 0, 0.25);
+  --tech-marquee-bg: rgba(var(--surface-rgb), 0.25);
   --tech-marquee-bg: rgba(255, 255, 255, 0.07);
   --tech-marquee-border: rgba(255, 255, 255, 0.22);
   --tech-icon-bg: rgba(0, 184, 40, 0.22);
@@ -857,7 +857,7 @@ export default {
   flex: 0 0 auto;
   background: rgba(0, 184, 40, 0.14);
   border: 1px solid rgba(0, 184, 40, 0.35);
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(var(--text-rgb), 0.95);
   padding: 8px 12px;
   border-radius: 12px;
   cursor: pointer;
@@ -867,7 +867,7 @@ export default {
 
 .anime-collapse-btn:hover {
   border-color: rgba(0, 184, 40, 0.6);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(var(--surface-rgb), 0.18);
 }
 
 .anime-collapse-btn:focus {
@@ -899,10 +899,10 @@ export default {
 .anime-card {
   position: relative;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(var(--contrast-rgb), 0.16);
+  background: rgba(var(--surface-rgb), 0.35);
   overflow: hidden;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(var(--surface-rgb), 0.18);
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
   text-decoration: none;
 }

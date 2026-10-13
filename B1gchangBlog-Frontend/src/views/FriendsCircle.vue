@@ -17,6 +17,6 @@ export default {
   position: absolute;
   top: 68px;
   padding: 20px;
-  color:white;
+  color: var(--text-primary);
 }
 </style>

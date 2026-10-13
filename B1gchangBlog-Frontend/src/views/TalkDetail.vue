@@ -167,8 +167,8 @@ export default {
 .talk-detail {
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.7);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -188,9 +188,9 @@ export default {
 .card {
   border-radius: 12px;
   padding: 18px;
-  background: rgba(0, 0, 0, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--surface-rgb), 0.82);
+  border: 1px solid rgba(var(--contrast-rgb), 0.28);
+  box-shadow: 0 6px 18px rgba(var(--surface-rgb), 0.35);
   width: 100%;
   max-width: 760px;
 }
@@ -199,7 +199,7 @@ export default {
   display: flex;
   gap: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
   white-space: nowrap;
 }
 
@@ -207,9 +207,9 @@ export default {
   height: 32px;
   padding: 0 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
+  background: rgba(var(--contrast-rgb), 0.06);
+  color: var(--text-primary);
   cursor: pointer;
 }
 
@@ -218,11 +218,11 @@ export default {
 }
 
 .state {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--text-rgb), 0.82);
 }
 
 .state--error {
-  color: #ffb4b4;
+  color: var(--error-color);
 }
 
 .moment {
@@ -242,7 +242,7 @@ export default {
   height: 44px;
   border-radius: 10px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
   flex: 0 0 auto;
 }
 
@@ -252,7 +252,7 @@ export default {
 
 .nick {
   font-weight: 700;
-  color: #7af58f;
+  color: var(--accent-color);
   font-size: 14px;
 }
 
@@ -262,7 +262,7 @@ export default {
   line-height: 1.8;
   white-space: pre-wrap;
   word-break: break-word;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(var(--text-rgb), 0.92);
   text-align: left;
   padding: 0;
 }
@@ -302,7 +302,7 @@ export default {
   height: auto;
   object-fit: cover;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(var(--contrast-rgb), 0.18);
   cursor: zoom-in;
 }
 
@@ -319,7 +319,7 @@ export default {
 }
 
 #tcomment-talk {
-  color: #ffffff;
+  color: var(--text-primary);
   min-height: 120px;
 }
 
@@ -382,7 +382,7 @@ export default {
   position: fixed;
   inset: 0;
   z-index: 5000;
-  background: rgba(0, 0, 0, 0.86);
+  background: rgba(var(--surface-rgb), 0.86);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,7 +395,7 @@ export default {
   max-height: 92vh;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 50px rgba(var(--surface-rgb), 0.45);
 }
 
 .preview-close {
@@ -406,9 +406,9 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.25);
+  background: rgba(var(--surface-rgb), 0.35);
+  color: var(--text-primary);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;

@@ -77,7 +77,7 @@
     <el-dialog :title="isEdit ? '编辑追番项' : '新增追番项'" v-model="dialogVisible" width="560px">
       <el-form :model="form" label-width="96px" @submit.prevent>
         <el-form-item label="图片 URL" required>
-          <el-input v-model="form.imageUrl" type="textarea" :rows="2" placeholder="完整图片地址，如七牛外链" />
+          <el-input v-model="form.imageUrl" type="textarea" :rows="2" placeholder="完整图片地址，如阿里云 OSS外链" />
         </el-form-item>
         <el-form-item label="标题">
           <el-input v-model="form.title" placeholder="可选，用于悬停提示" />

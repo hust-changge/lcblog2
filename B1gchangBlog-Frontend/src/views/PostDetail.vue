@@ -891,7 +891,7 @@ export default {
   padding: 12px 10px;
   border-radius: 8px;
   font-size: 13px;
-  color: #ccc;
+  color: var(--text-secondary);
   height: fit-content;
   overflow-y: auto;
   max-height: 80vh;
@@ -943,7 +943,7 @@ export default {
 
 /* 鼠标悬停高亮整行目录 */
 .toc-item:hover {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(var(--contrast-rgb), 0.04);
   border-radius: 4px;
 }
 
@@ -981,7 +981,7 @@ export default {
 .post-detail {
   padding: 20px;
   background-color: #1e1e1ee0;
-  color: #ffffff;
+  color: var(--text-primary);
   border-radius: 8px;
   border: #ffffff 1px solid;
 }
@@ -1014,7 +1014,7 @@ export default {
   border-collapse: collapse;
   margin: 20px 0;
   background-color: #2d2d2d;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 :deep(.post-content th),
@@ -1037,7 +1037,7 @@ export default {
 }
 
 :deep(.post-content code) {
-  background-color: rgba(0, 0, 0, 0.22);
+  background-color: rgba(var(--surface-rgb), 0.22);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, 'Courier New',
@@ -1053,7 +1053,7 @@ export default {
   border: 1px solid #ffffff8e;
   overflow: hidden;
   background: radial-gradient(circle at top left, #2b3a4a, #141414);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(var(--surface-rgb), 0.5);
 }
 
 :deep(.code-block__header) {
@@ -1063,7 +1063,7 @@ export default {
   padding: 6px 12px;
   font-size: 12px;
   background: linear-gradient(90deg, rgba(72, 89, 117, 0.9), rgba(20, 20, 20, 0.95));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(var(--contrast-rgb), 0.06);
 }
 
 :deep(.code-block__lang) {
@@ -1130,7 +1130,7 @@ export default {
 .post-description {
   margin-bottom: 20px;
   font-size: 14px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .post-description p {
@@ -1149,15 +1149,15 @@ export default {
 }
 
 .post-comment-card {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(var(--surface-rgb), 0.8);
   border-radius: 10px;
   padding: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 10px rgba(var(--surface-rgb), 0.3);
+  border: 1px solid rgba(var(--contrast-rgb), 0.5);
 }
 
 #tcomment-post {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 /* 桌面端右下角悬浮按钮容器 */
@@ -1178,9 +1178,9 @@ export default {
   width: min(360px, calc(100vw - 140px));
   padding: 18px 44px 18px 18px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
   background: linear-gradient(135deg, #12344a 0%, #2e789d 45%, #4fb4d8 100%);
-  color: #ffffff;
+  color: var(--text-primary);
   line-height: 1.45;
   box-shadow: 0 16px 36px rgba(14, 40, 58, 0.5);
   animation: readerGuidePulse 1.8s ease-in-out infinite;
@@ -1194,8 +1194,8 @@ export default {
   width: 16px;
   height: 16px;
   background: #3a95ba;
-  border-right: 1px solid rgba(255, 255, 255, 0.35);
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-right: 1px solid rgba(var(--contrast-rgb), 0.35);
+  border-top: 1px solid rgba(var(--contrast-rgb), 0.35);
   transform: translateY(-50%) rotate(45deg);
 }
 
@@ -1205,7 +1205,7 @@ export default {
   right: 10px;
   border: 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(var(--text-rgb), 0.88);
   cursor: pointer;
   font-size: 22px;
   line-height: 1;
@@ -1213,7 +1213,7 @@ export default {
 }
 
 .reader-guide__close:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .reader-guide__title {
@@ -1226,7 +1226,7 @@ export default {
 .reader-guide__desc {
   margin: 8px 0 0;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.96);
+  color: rgba(var(--text-rgb), 0.96);
 }
 
 @keyframes readerGuidePulse {
@@ -1247,16 +1247,16 @@ export default {
   border-radius: 8px;
   border: none;
   background: #2e789d;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 10px rgba(var(--surface-rgb), 0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .float-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 6px 14px rgba(var(--surface-rgb), 0.55);
   background: #3691c0;
 }
 
@@ -1802,7 +1802,7 @@ export default {
     border-radius: 999px;
     font-size: 13px;
     border-color: #d1d5db;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(var(--contrast-rgb), 0.92);
     box-shadow: 0 6px 14px rgba(17, 24, 39, 0.08);
   }
 
@@ -1813,7 +1813,7 @@ export default {
     border-radius: 999px;
     font-size: 13px;
     border-color: #d1d5db;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(var(--contrast-rgb), 0.92);
     box-shadow: 0 6px 14px rgba(17, 24, 39, 0.08);
   }
 }

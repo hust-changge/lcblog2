@@ -1,12 +1,12 @@
 <script setup>
 import Header from './components/header.vue';
 import Footer from './components/Footer.vue';
-import MagneticCursor from './components/MagneticCursor.vue';
+import FairyDustCursor from './components/FairyDustCursor.vue';
 </script>
 
 <template>
   <div class="app-root">
-    <MagneticCursor />
+    <FairyDustCursor />
     <header>
       <Header />
     </header>

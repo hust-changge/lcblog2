@@ -38,6 +38,12 @@ services:
       HM_DB_USERNAME: blog_user
       HM_DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
       HM_JWT_SECRET_KEY: ${HM_JWT_SECRET_KEY:?Set HM_JWT_SECRET_KEY}
+      OSS_ENDPOINT: ${OSS_ENDPOINT:-}
+      OSS_REGION: ${OSS_REGION:-}
+      OSS_BUCKET: ${OSS_BUCKET:-}
+      OSS_ACCESS_KEY_ID: ${OSS_ACCESS_KEY_ID:-}
+      OSS_ACCESS_KEY_SECRET: ${OSS_ACCESS_KEY_SECRET:-}
+      OSS_PUBLIC_URL: ${OSS_PUBLIC_URL:-}
       RUNTIME_CONFIG_PATH: /app/config/runtime-config.yml
     volumes:
       - ../prod/runtime-config.yml:/app/config/runtime-config.yml:rw

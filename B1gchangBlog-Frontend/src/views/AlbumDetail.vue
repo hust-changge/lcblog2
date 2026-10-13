@@ -136,7 +136,7 @@ export default {
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  color: white;
+  color: var(--text-primary);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -151,16 +151,16 @@ export default {
   height: 36px;
   padding: 0 14px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(var(--contrast-rgb), 0.2);
   background: transparent;
-  color: #fff;
+  color: var(--text-primary);
   cursor: pointer;
   transition: none;
 }
 
 .back-btn:hover {
   transform: none;
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(var(--contrast-rgb), 0.2);
   box-shadow: none;
 }
 
@@ -171,12 +171,12 @@ export default {
 .album-name {
   margin: 0;
   font-size: 34px;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .album-intro {
   margin: 10px 0 20px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--text-rgb), 0.82);
 }
 
 .photo-grid {
@@ -217,18 +217,18 @@ export default {
 .photo-card figcaption {
   margin-top: 2px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--text-rgb), 0.85);
 }
 
 .empty-state {
   margin-top: 18px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .image-preview-mask {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(var(--surface-rgb), 0.88);
   z-index: 3000;
   display: flex;
   align-items: center;
@@ -253,8 +253,8 @@ export default {
   height: 40px;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+  background: rgba(var(--contrast-rgb), 0.18);
+  color: var(--text-primary);
   font-size: 28px;
   line-height: 1;
   cursor: pointer;

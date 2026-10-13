@@ -47,7 +47,7 @@ public class ArticleCoverImageProperties {
      */
     private int seed = -1;
 
-    /** 为 true 时响应内返回可下载的临时 URL（再转存七牛） */
+    /** 为 true 时响应内返回可下载的临时 URL（再转存阿里云 OSS） */
     private boolean returnUrl = true;
 
     /** 从简介中提取供模型理解主题的摘要长度上限 */

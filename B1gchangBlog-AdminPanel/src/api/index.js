@@ -77,9 +77,12 @@ export const updateTalkSidebar = (data) => {
   return request.put('/admin/talk/sidebar/update', data)
 }
 
-// 七牛上传：获取 uploadToken（管理端直传七牛）
-export const getQiniuUploadToken = (params) => {
-  return request.get('/admin/upload/qiniu/token', { params })
+// 通过已认证的后端上传图片到阿里云 OSS。
+export const uploadOssImage = (file, dir, onUploadProgress) => {
+  const data = new FormData()
+  data.append('file', file)
+  data.append('dir', dir)
+  return request.post('/admin/upload/oss', data, { onUploadProgress })
 }
 
 // 登录接口

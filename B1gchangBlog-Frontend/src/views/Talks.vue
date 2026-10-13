@@ -291,8 +291,8 @@ export default {
 .talks {
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+  background: rgba(var(--surface-rgb), 0.7);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
@@ -312,7 +312,7 @@ export default {
 .talks-tagline {
   font-size: 20px;
   letter-spacing: 4px;
-  color: #cccccc;
+  color: var(--text-secondary);
 }
 
 .talks-title-gradient {
@@ -326,7 +326,7 @@ export default {
 
 .talks-subtitle {
   margin: 10px 0 0;
-  color: #cccccc;
+  color: var(--text-secondary);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   letter-spacing: 0;
   font-size: 14px;
@@ -334,11 +334,11 @@ export default {
 
 .state {
   margin-top: 18px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--text-rgb), 0.82);
 }
 
 .state--error {
-  color: #ffb4b4;
+  color: var(--error-color);
 }
 
 .talks-layout {
@@ -373,19 +373,19 @@ export default {
   height: 32px;
   padding: 0 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.2);
+  background: rgba(var(--surface-rgb), 0.55);
+  color: var(--text-primary);
   font-size: 12px;
   cursor: pointer;
 }
 
 .side-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(var(--surface-rgb), 0.8);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
   border-radius: 12px;
   padding: 14px 14px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 18px rgba(var(--surface-rgb), 0.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -393,7 +393,7 @@ export default {
 .side-title {
   font-size: 14px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
@@ -408,7 +408,7 @@ export default {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(var(--contrast-rgb), 0.25);
 }
 
 .dot--online {
@@ -425,7 +425,7 @@ export default {
 
 .status-text {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(var(--text-rgb), 0.88);
 }
 
 .side-kv {
@@ -436,20 +436,20 @@ export default {
 
 .kv .k {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--text-rgb), 0.65);
 }
 
 .kv .v {
   margin-top: 3px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(var(--text-rgb), 0.92);
   word-break: break-word;
 }
 
 .side-list {
   margin: 0;
   padding-left: 16px;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(var(--text-rgb), 0.86);
   font-size: 13px;
   line-height: 1.65;
 }
@@ -459,7 +459,7 @@ export default {
 }
 
 .side-muted {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--text-rgb), 0.65);
   font-size: 13px;
 }
 
@@ -475,14 +475,14 @@ export default {
 .todo-item {
   padding: 8px 10px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(var(--contrast-rgb), 0.14);
+  background: rgba(var(--contrast-rgb), 0.04);
 }
 
 .todo-text {
   font-size: 13px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(var(--text-rgb), 0.9);
   word-break: break-word;
 }
 
@@ -493,12 +493,12 @@ export default {
 }
 
 .talk-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(var(--surface-rgb), 0.8);
+  border: 1px solid rgba(var(--contrast-rgb), 0.35);
   border-radius: 12px;
   padding: 14px 14px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 18px rgba(var(--surface-rgb), 0.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease;
@@ -521,7 +521,7 @@ export default {
   height: 44px;
   border-radius: 10px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
   flex: 0 0 auto;
 }
 
@@ -540,7 +540,7 @@ export default {
 
 .nick {
   font-weight: 700;
-  color: #7af58f;
+  color: var(--accent-color);
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -552,7 +552,7 @@ export default {
   display: flex;
   gap: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--text-rgb), 0.65);
   white-space: nowrap;
   flex: 0 0 auto;
 }
@@ -561,7 +561,7 @@ export default {
   margin-top: 6px;
   font-size: 14px;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(var(--text-rgb), 0.92);
   white-space: pre-wrap;
   word-break: break-word;
   text-align: left;
@@ -595,7 +595,7 @@ export default {
   height: var(--cell);
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(var(--contrast-rgb), 0.18);
   cursor: zoom-in;
 }
 
@@ -611,9 +611,9 @@ export default {
   height: 34px;
   padding: 0 14px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.22);
+  background: rgba(var(--contrast-rgb), 0.06);
+  color: var(--text-primary);
   cursor: pointer;
 }
 
@@ -624,7 +624,7 @@ export default {
 
 .pager-text {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--text-rgb), 0.75);
 }
 
 @media (max-width: 520px) {
@@ -723,7 +723,7 @@ export default {
     right: 8px;
     bottom: 0;
     height: 1px;
-    background: rgba(255, 255, 255, 0.24);
+    background: rgba(var(--contrast-rgb), 0.24);
   }
 
   .talk-list .talk-card:last-child::after {
@@ -754,7 +754,7 @@ export default {
   position: fixed;
   inset: 0;
   z-index: 5000;
-  background: rgba(0, 0, 0, 0.86);
+  background: rgba(var(--surface-rgb), 0.86);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -767,7 +767,7 @@ export default {
   max-height: 92vh;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 50px rgba(var(--surface-rgb), 0.45);
 }
 
 .preview-close {
@@ -778,9 +778,9 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
+  border: 1px solid rgba(var(--contrast-rgb), 0.25);
+  background: rgba(var(--surface-rgb), 0.35);
+  color: var(--text-primary);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
